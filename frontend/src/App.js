@@ -19,17 +19,7 @@ function App() {
       <main>
         <div className="row center">
           {data.products.map((product) => {
-            return (
-              <ProductCard
-                key={product._id}
-                name={product.name}
-                image={product.image}
-                description={product.description}
-                rating={product.rating}
-                price={product.price}
-                id={product._id}
-              />
-            );
+            return <ProductCard key={product._id} product={product} />;
           })}
         </div>
       </main>
