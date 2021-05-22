@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 4200;
 
 app.get("/api/products/:id", (req, res, next) => {
-  const product = data.products.find((x) => x._id === req.params.id);
+  const product = data.products.find((x) => x._id === +req.params.id);
   if (product) {
     res.status(200).send(product);
   } else {

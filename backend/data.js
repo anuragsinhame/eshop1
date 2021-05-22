@@ -1,7 +1,8 @@
 const data = {
   products: [
     {
-      _id: "1",
+      // _id: "1",
+      _id: 1,
       name: "Prod1",
       image: "https://via.placeholder.com/680x830.png?text=img1+680x830",
       price: 120,
@@ -12,7 +13,8 @@ const data = {
       description: "Good product",
     },
     {
-      _id: "2",
+      // _id: "2",
+      _id: 2,
       name: "Prod2",
       image: "https://via.placeholder.com/680x830.png?text=img2+680x830",
       price: 122,

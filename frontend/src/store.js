@@ -11,7 +11,7 @@ import {
 const initialState = {
   cart: {
     cartItems: localStorage.getItem("cartItems")
-      ? JSON.parse(localStorage.get("cartItems"))
+      ? JSON.parse(localStorage.getItem("cartItems"))
       : [],
   },
 };
