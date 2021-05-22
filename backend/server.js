@@ -5,6 +5,18 @@ const app = express();
 
 const port = process.env.PORT || 4200;
 
+app.get("/api/products/:id", (req, res, next) => {
+  const product = data.products.find((x) => x._id === req.params.id);
+  if (product) {
+    res.status(200).send(product);
+  } else {
+    res.status(404).send({
+      message: "Product Not Found",
+    });
+  }
+  // res.send(data.products);
+});
+
 app.get("/api/products", (req, res, next) => {
   res.send(data.products);
 });

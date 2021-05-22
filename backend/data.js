@@ -1,7 +1,7 @@
 const data = {
   products: [
     {
-      _id: 1,
+      _id: "1",
       name: "Prod1",
       image: "https://via.placeholder.com/680x830.png?text=img1+680x830",
       price: 120,
