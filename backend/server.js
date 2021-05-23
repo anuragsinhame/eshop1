@@ -1,20 +1,23 @@
-import express from "express";
+import dotenv from "dotenv";
+import express, { urlencoded } from "express";
 import mongoose from "mongoose";
 // import data from "./data.js";
 import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
 
+dotenv.config();
 const port = process.env.PORT || 4200;
 const mongoUrl = process.env.MONGODB_URL || "mongodb://localhost/eshop";
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
 });
-
-
 
 // app.get("/api/products", (req, res, next) => {
 //   res.send(data.products);
