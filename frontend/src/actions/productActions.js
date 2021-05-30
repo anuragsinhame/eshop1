@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import {
   PRODUCT_DETAILS_FAIL,
   PRODUCT_DETAILS_REQUEST,
@@ -8,10 +9,12 @@ import {
   PRODUCT_LIST_SUCCESS,
 } from "../constants/productConstants";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 export const listProducts = () => async (dispatch) => {
   dispatch({ type: PRODUCT_LIST_REQUEST });
   try {
-    const { data } = await axios.get("/api/products");
+    const { data } = await axios.get(`${apiUrl}/api/products`);
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
@@ -21,7 +24,7 @@ export const listProducts = () => async (dispatch) => {
 export const detailsProduct = (productId) => async (dispatch) => {
   dispatch({ type: PRODUCT_DETAILS_REQUEST, payload: productId });
   try {
-    const { data } = await axios.get(`/api/products/${productId}`);
+    const { data } = await axios.get(`${apiUrl}/api/products/${productId}`);
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({

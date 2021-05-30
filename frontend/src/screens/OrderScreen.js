@@ -9,6 +9,8 @@ import { detailsOrder, payOrder } from "../actions/orderActions";
 import axios from "axios";
 import { ORDER_PAY_RESET } from "../constants/orderConstants";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 export default function OrderScreen(props) {
   const orderId = props.match.params.id;
   const [sdkReady, setSdkReady] = useState(false);
@@ -27,7 +29,7 @@ export default function OrderScreen(props) {
   // if the value of any dependency variable will change, the useEffect function will be executed
   useEffect(() => {
     const addPayPalScript = async () => {
-      const { data } = await axios.get("/api/config/paypal");
+      const { data } = await axios.get(`${apiUrl}/api/config/paypal`);
       const script = document.createElement("script");
       script.type = "text/javascript";
       script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
