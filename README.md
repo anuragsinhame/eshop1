@@ -9,5 +9,5 @@ git add .
 git commit -am "message"
 git push heroku master
 
-##DB
+## Database
 DB is hosted on Mongo Atlas
