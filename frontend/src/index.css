@@ -106,6 +106,10 @@ button.block {
   width: 100%;
 }
 
+button.small {
+  font-size: 1.2rem;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -233,6 +237,11 @@ a.brand {
   background-color: #ffe0e0;
 }
 
+.alert-success {
+  color: #20a020;
+  background-color: #eeffe0;
+}
+
 /* Form */
 .form {
   max-width: 60rem;
@@ -247,7 +256,7 @@ a.brand {
 
 .form label {
   margin: 1rem 0;
-  display: block;
+  /* display: block; */
 }
 
 /* Dropdown */
@@ -285,4 +294,24 @@ a.brand {
 .checkout-steps > div.active {
   border-top: 0.3rem #f08000 solid;
   color: #f08000;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background-color: #f4f4f4;
+}
+
+.table td,
+.table th {
+  text-align: left;
+  border: 0.1rem solid #e4e4e4;
+}
+
+.table button {
+  margin: 0 0.2rem;
 }

@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import express, { urlencoded } from "express";
 import mongoose from "mongoose";
+import orderRouter from "./routers/orderRouter.js";
 // import data from "./data.js";
 import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
@@ -25,6 +26,12 @@ mongoose.connect(mongoUrl, {
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
+app.use("/api/orders", orderRouter);
+
+// paypal integration
+app.get("/api/config/paypal", (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID || "sb"); //sb -> sandbox
+});
 
 app.get("/", (req, res, next) => {
   res.send("Server is ready");
