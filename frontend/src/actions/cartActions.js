@@ -7,8 +7,10 @@ import {
 } from "../constants/cartConstants";
 // import { getState } from "redux-thunk";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 export const addToCart = (productId, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`/api/products/${productId}`);
+  const { data } = await axios.get(`${apiUrl}/api/products/${productId}`);
   dispatch({
     type: CART_ADD_ITEM,
     payload: {

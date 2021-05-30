@@ -16,6 +16,8 @@ import {
   ORDER_PAY_SUCCESS,
 } from "../constants/orderConstants";
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 export const createOrder = (order) => async (dispatch, getState) => {
   dispatch({ type: ORDER_CREATE_REQUEST, payload: order });
   try {
@@ -24,7 +26,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
     } = getState();
 
     console.log("OrderAPI-", order);
-    const { data } = await axios.post("/api/orders", order, {
+    const { data } = await axios.post(`${apiUrl}/api/orders`, order, {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
       },
@@ -49,7 +51,7 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await axios.get(`/api/orders/${orderId}`, {
+    const { data } = await axios.get(`${apiUrl}/api/orders/${orderId}`, {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     });
     dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
@@ -70,7 +72,7 @@ export const payOrder =
     } = getState();
     try {
       const { data } = await axios.put(
-        `/api/orders/${order._id}/pay`,
+        `${apiUrl}/api/orders/${order._id}/pay`,
         paymentResult,
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -92,7 +94,7 @@ export const listOrderMine = () => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await axios.get("/api/orders/mine", {
+    const { data } = await axios.get(`${apiUrl}/api/orders/mine`, {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     });
     dispatch({ type: ORDER_MINE_LIST_SUCCESS, payload: data });
