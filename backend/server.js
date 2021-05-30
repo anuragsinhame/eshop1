@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 import express, { urlencoded } from "express";
 import mongoose from "mongoose";
+import cors from "cors";
+
 import orderRouter from "./routers/orderRouter.js";
 // import data from "./data.js";
 import productRouter from "./routers/productRouter.js";
@@ -9,9 +11,18 @@ import userRouter from "./routers/userRouter.js";
 dotenv.config();
 const port = process.env.PORT || 4200;
 const mongoUrl = process.env.MONGODB_URL || "mongodb://localhost/eshop";
-console.log('mongoUrl----',mongoUrl)
+console.log("mongoUrl----", mongoUrl);
 
 const app = express();
+app.use(
+  cors({
+    origin: [
+      /\.netlify\.app$/,
+      "https://modest-hypatia-94cd57.netlify.app/",
+      "http://localhost:3000",
+    ],
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
