@@ -9,6 +9,7 @@ import userRouter from "./routers/userRouter.js";
 dotenv.config();
 const port = process.env.PORT || 4200;
 const mongoUrl = process.env.MONGODB_URL || "mongodb://localhost/eshop";
+console.log('mongoUrl----',mongoUrl)
 
 const app = express();
 app.use(express.json());
