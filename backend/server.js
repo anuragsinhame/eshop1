@@ -6,6 +6,7 @@ import orderRouter from "./routers/orderRouter.js";
 // import data from "./data.js";
 import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
+import categoryRouter from "./routers/categoryRouter.js";
 
 dotenv.config();
 const port = process.env.PORT || 4200;
@@ -42,6 +43,7 @@ mongoose
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/category", categoryRouter);
 
 // paypal integration
 app.get("/api/config/paypal", (req, res) => {

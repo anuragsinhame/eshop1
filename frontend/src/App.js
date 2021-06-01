@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Link } from "react-router-dom";
+
 import { signout } from "./actions/userActions";
 import CartScreen from "./screens/CartScreen";
 // import { Route } from "react-router-dom/cjs/react-router-dom.min";
@@ -15,7 +16,12 @@ import RegisterScreen from "./screens/RegisterScreen";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import SigninScreen from "./screens/SigninScreen";
 
+import NavBar from "./components/NavBar";
+
 import PrivateRoute from "./components/PrivateRoute";
+
+import { StoreConstants } from "./storeData";
+import CategoryScreen from "./screens/CategoryScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -35,9 +41,10 @@ function App() {
         <header className="row">
           <div>
             <Link className="brand" to="/">
-              Eshop
+              {StoreConstants.shopName}
             </Link>
           </div>
+          <div></div>
           <div>
             <Link to="/cart">
               Cart
@@ -91,6 +98,8 @@ function App() {
             )}
           </div>
         </header>
+        {/* Adding Navigation Bar */}
+        <NavBar />
         <main>
           {/* "?" is added so that id can be empty and user can be redirected to cart component */}
           <Route path="/cart/:id?" component={CartScreen}></Route>
@@ -102,6 +111,7 @@ function App() {
           <Route path="/placeorder" component={PlaceOrderScreen}></Route>
           <Route path="/order/:id" component={OrderScreen}></Route>
           <Route path="/orderhistory" component={OrderHistoryScreen}></Route>
+          <Route path="/:catId/:subCatId?" component={CategoryScreen}></Route>
           <PrivateRoute
             path="/profile"
             component={ProfileScreen}
