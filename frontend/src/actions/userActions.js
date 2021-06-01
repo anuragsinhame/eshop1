@@ -15,15 +15,12 @@ import {
   USER_UPDATE_PROFILE_SUCCESS,
 } from "../constants/userConstants.js";
 
-const apiUrl = process.env.REACT_APP_API_URL;
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const signin = (email, password) => async (dispatch) => {
   dispatch({ type: USER_SIGNIN_REQUEST, payload: { email, password } });
   try {
-    const { data } = await axios.post(`${apiUrl}/api/users/signin`, {
-      email,
-      password,
-    });
+    const { data } = await axios.post(`${API_URL}/api/users/signin`, { email, password });
     dispatch({
       type: USER_SIGNIN_SUCCESS,
       payload: data,
@@ -50,7 +47,7 @@ export const signout = () => (dispatch) => {
 export const register = (name, email, password) => async (dispatch) => {
   dispatch({ type: USER_REGISTER_REQUEST, payload: { name, email, password } });
   try {
-    const { data } = await axios.post(`${apiUrl}/api/users/register`, {
+    const { data } = await axios.post(`${API_URL}/api/users/register`, {
       name,
       email,
       password,
@@ -81,7 +78,7 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await axios.get(`${apiUrl}/api/users/${userId}`, {
+    const { data } = await axios.get(`${API_URL}/api/users/${userId}`, {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
       },
@@ -102,7 +99,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
     userSignin: { userInfo },
   } = getState();
   try {
-    const { data } = await axios.put(`${apiUrl}/api/users/profile`, user, {
+    const { data } = await axios.put(`${API_URL}/api/users/profile`, user, {
       headers: {
         Authorization: `Bearer ${userInfo.token}`,
       },

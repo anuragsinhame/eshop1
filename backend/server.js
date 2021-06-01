@@ -1,44 +1,49 @@
 import dotenv from "dotenv";
-import express, { urlencoded } from "express";
-import mongoose from "mongoose";
 import cors from "cors";
-
+import express from "express";
+import mongoose from "mongoose";
 import orderRouter from "./routers/orderRouter.js";
 // import data from "./data.js";
 import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
+import categoryRouter from "./routers/categoryRouter.js";
 
 dotenv.config();
 const port = process.env.PORT || 4200;
 const mongoUrl = process.env.MONGODB_URL || "mongodb://localhost/eshop";
-console.log("mongoUrl----", mongoUrl);
 
 const app = express();
+
+// Setting CORS
 app.use(
   cors({
-    origin: [
-      /\.netlify\.app$/,
-      "https://modest-hypatia-94cd57.netlify.app/",
-      "http://localhost:3000",
-    ],
+    origin: "*", //change it to only be accessible by frontend - CHANGE
   })
 );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(mongoUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
-
-// app.get("/api/products", (req, res, next) => {
-//   res.send(data.products);
-// });
+mongoose
+  .connect(mongoUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .then(
+    () => {
+      console.log(`Connected to Database`);
+      console.log(mongoUrl); //remove - CHANGE
+    },
+    (err) => {
+      console.log(`Error Occcured in connecting to DB: ${err}`);
+    }
+  );
 
 app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/category", categoryRouter);
 
 // paypal integration
 app.get("/api/config/paypal", (req, res) => {
@@ -55,4 +60,5 @@ app.use((err, req, res, next) => {
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
+  // console.log(`Server has been started`); // keep this for deployment- CHANGE
 });

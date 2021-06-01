@@ -14,7 +14,7 @@ productRouter.get(
   })
 );
 
-productRouter.get(
+productRouter.post(
   "/seed",
   expressAsyncHandler(async (req, res) => {
     // await Product.remove({});

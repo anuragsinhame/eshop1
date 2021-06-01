@@ -1,0 +1,101 @@
+export const StoreConstants = {
+  shopName: "EMart Shop",
+  sliderImages: [
+    {
+      id: 1,
+      url: "assets/slider/4.jpg",
+      description: "Image1",
+      alt: "Image1",
+    },
+    {
+      id: 2,
+      url: "assets/slider/5.webp",
+      description: "Image2",
+      alt: "Image2",
+    },
+    {
+      id: 3,
+      url: "assets/slider/3.webp",
+      description: "Image3",
+      alt: "Image3",
+    },
+  ],
+};
+
+export const CategoryData = [
+  {
+    _id: 1,
+    categoryName: "Grocery",
+    subcategories: [
+      { id: 101, name: "Pulses" },
+      { id: 102, name: "ATTA" },
+      { id: 103, name: "Other Flours" },
+      { id: 104, name: "Rice" },
+      { id: 105, name: "Other Grains" },
+      { id: 106, name: "Dry Fruits & Nuts" },
+      { id: 107, name: "Edible Oils" },
+      { id: 108, name: "Ghee & Vanaspati" },
+      { id: 109, name: "Spices" },
+      { id: 110, name: "Salt" },
+      { id: 111, name: "Sugar & Jaggery" },
+    ],
+  },
+  {
+    _id: 2,
+    categoryName: "Personal Care",
+    subcategories: [
+      { id: 201, name: "Bath & Body" },
+      { id: 202, name: "Hair Care" },
+      { id: 203, name: "Skin Care" },
+      { id: 204, name: "Oral Care" },
+      { id: 205, name: "Face Care" },
+      { id: 206, name: "Men's Grooming" },
+      { id: 207, name: "Women's Grooming" },
+      { id: 208, name: "Fragrances" },
+      { id: 209, name: "Cosmetics" },
+      { id: 210, name: "Health & Wellness" },
+    ],
+  },
+  {
+    _id: 3,
+    categoryName: "Household",
+    subcategories: [
+      { id: 301, name: "Repellents" },
+      { id: 302, name: "Laundry Detergents" },
+      { id: 303, name: "Cleaners" },
+      { id: 304, name: "Dishwashers" },
+      { id: 305, name: "Liquid Detergents" },
+      { id: 306, name: "Disinfectants" },
+      { id: 307, name: "Tissue & Disposables" },
+      { id: 308, name: "Pooja Needs" },
+      { id: 309, name: "Home & car Fresheners" },
+      { id: 310, name: "Shoe Care" },
+      { id: 311, name: "Cleaning Tools & Brushes" },
+    ],
+  },
+  {
+    _id: 4,
+    categoryName: "Snacks",
+    subcategories: [
+      { id: 401, name: "Chocolates" },
+      { id: 402, name: "Biscuits & Cookies" },
+      { id: 403, name: "Namkeen & Snacks" },
+      { id: 404, name: "Chips & Crisps" },
+      { id: 405, name: "Sweets" },
+      { id: 406, name: "Confectionery" },
+    ],
+  },
+  {
+    _id: 5,
+    categoryName: "Beverages",
+    subcategories: [
+      { id: 501, name: "Cold Drinks" },
+      { id: 502, name: "Juices & Drinks" },
+      { id: 503, name: "Tea" },
+      { id: 504, name: "Coffee" },
+      { id: 505, name: "Health & Energy Drinks" },
+      { id: 506, name: "Water & Soda" },
+      { id: 507, name: "Milk Drinks" },
+    ],
+  },
+];

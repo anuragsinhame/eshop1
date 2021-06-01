@@ -2,11 +2,16 @@ import React, { useEffect } from "react";
 // import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 import ProductCard from "../components/ProductCard";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { listProducts } from "../actions/productActions";
 // import data from "../data";  //local import commented
+
+import { StoreConstants } from "../storeData";
 
 export default function HomeScreen() {
   // const [products, setProduct] = useState([]);
@@ -45,16 +50,32 @@ export default function HomeScreen() {
   }, [dispatch]);
 
   return (
-    <div className="row center">
-      {loading ? (
-        <LoadingBox />
-      ) : error ? (
-        <MessageBox variant="danger">{error}</MessageBox>
-      ) : (
-        products.map((product) => {
-          return <ProductCard key={product._id} product={product} />;
-        })
-      )}
+    <div>
+      {/* Adding Slider */}
+      <div className="row center">
+        <Carousel infiniteLoop>
+          {StoreConstants.sliderImages.map((image) => (
+            <div key={image.id}>
+              <img src={image.url} alt={image.alt} />
+              <p className="legend">{image.description}</p>
+            </div>
+          ))}
+        </Carousel>
+      </div>
+      <div>
+        <h1>Bestselling Products</h1>
+        <div className="row center">
+          {loading ? (
+            <LoadingBox />
+          ) : error ? (
+            <MessageBox variant="danger">{error}</MessageBox>
+          ) : (
+            products.map((product) => {
+              return <ProductCard key={product._id} product={product} />;
+            })
+          )}
+        </div>
+      </div>
     </div>
   );
 }
