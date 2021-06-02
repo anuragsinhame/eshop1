@@ -20,6 +20,7 @@ export const StoreConstants = {
       alt: "Image3",
     },
   ],
+  pinCodesForDelivery: ["206001", "2006002", "2006003", "206130", "206242"],
 };
 
 export const CategoryData = [

@@ -19,8 +19,8 @@ export const getCategoryProducts = (catId, subCatId) => async (dispatch) => {
       productsRes = await axios(`${API_URL}/api/category/${catId}`);
     }
     const { data } = productsRes;
-    const products = data.products;
-    dispatch({ type: CATEGORY_DATA_SUCCESS, payload: products });
+    const categoryProducts = data.products;
+    dispatch({ type: CATEGORY_DATA_SUCCESS, payload: categoryProducts });
   } catch (error) {
     const message =
       error.response && error.response.data.message
