@@ -5,7 +5,7 @@ import {
 } from "../constants/categoryConstants";
 
 export const categoryProductsDataReducer = (
-  state = { products: [] },
+  state = { categoryProducts: [] },
   action
 ) => {
   switch (action.type) {
@@ -14,7 +14,7 @@ export const categoryProductsDataReducer = (
       return { loading: true };
     case CATEGORY_DATA_SUCCESS:
       console.log("Cate Reducer1");
-      return { loading: false, products: action.payload };
+      return { loading: false, categoryProducts: action.payload };
     case CATEGORY_DATA_FAIL:
       console.log("Cate Reducer2");
       return { loading: false, error: action.payload };
