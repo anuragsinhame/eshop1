@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 
 import { signout } from "./actions/userActions";
 import CartScreen from "./screens/CartScreen";
@@ -111,7 +111,13 @@ function App() {
           <Route path="/placeorder" component={PlaceOrderScreen}></Route>
           <Route path="/order/:id" component={OrderScreen}></Route>
           <Route path="/orderhistory" component={OrderHistoryScreen}></Route>
-          <Route path="/:catId/:subCatId?" component={CategoryScreen}></Route>
+          <Route
+            path="/products/:catId/:subCatId?"
+            component={CategoryScreen}
+          ></Route>
+          <Route path="/products" exact={true}>
+            <Redirect to="/"></Redirect>
+          </Route>
           <PrivateRoute
             path="/profile"
             component={ProfileScreen}

@@ -25,13 +25,13 @@ export default function NavBar() {
       <div>
         {CategoryData.map((category) => (
           <div className="dropdown">
-            <Link to={`/${category._id}`}>
+            <Link to={`/products/${category._id}`}>
               {category.categoryName} <i className="fa fa-caret-down"></i>
             </Link>
             <ul className="dropdown-content">
               {category.subcategories.map((subCat) => (
                 <li key={subCat.id}>
-                  <Link to={`/${category._id}/${subCat._id}`}>
+                  <Link to={`/products/${category._id}/${subCat._id}`}>
                     {subCat.name}
                   </Link>
                 </li>

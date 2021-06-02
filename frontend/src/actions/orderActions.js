@@ -64,29 +64,50 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
   }
 };
 
-export const payOrder =
-  (order, paymentResult) => async (dispatch, getState) => {
-    dispatch({ type: ORDER_PAY_REQUEST, payload: { order, paymentResult } });
-    const {
-      userSignin: { userInfo },
-    } = getState();
-    try {
-      const { data } = await axios.put(
-        `${API_URL}/api/orders/${order._id}/pay`,
-        paymentResult,
-        {
-          headers: { Authorization: `Bearer ${userInfo.token}` },
-        }
-      );
-      dispatch({ type: ORDER_PAY_SUCCESS, payload: { data } });
-    } catch (error) {
-      const message =
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message;
-      dispatch({ type: ORDER_PAY_FAIL, payload: message });
-    }
-  };
+export const payOrder = (order) => async (dispatch, getState) => {
+  console.log("Order paid");
+  // TODO: update the payment status on backend
+  // dispatch({ type: ORDER_PAY_REQUEST, payload: { order } });
+  // const {
+  //   userSignin: { userInfo },
+  // } = getState();
+  // try {
+  //   const { data } = await axios.put(`${API_URL}/api/orders/${order._id}/pay`, {
+  //     headers: { Authorization: `Bearer ${userInfo.token}` },
+  //   });
+  //   dispatch({ type: ORDER_PAY_SUCCESS, payload: { data } });
+  // } catch (error) {
+  //   const message =
+  //     error.response && error.response.data.message
+  //       ? error.response.data.message
+  //       : error.message;
+  //   dispatch({ type: ORDER_PAY_FAIL, payload: message });
+  // }
+  
+
+  // PayPal Integration
+  // (order, paymentResult) => async (dispatch, getState) => {
+  //   dispatch({ type: ORDER_PAY_REQUEST, payload: { order, paymentResult } });
+  //   const {
+  //     userSignin: { userInfo },
+  //   } = getState();
+  //   try {
+  //     const { data } = await axios.put(
+  //       `${API_URL}/api/orders/${order._id}/pay`,
+  //       paymentResult,
+  //       {
+  //         headers: { Authorization: `Bearer ${userInfo.token}` },
+  //       }
+  //     );
+  //     dispatch({ type: ORDER_PAY_SUCCESS, payload: { data } });
+  //   } catch (error) {
+  //     const message =
+  //       error.response && error.response.data.message
+  //         ? error.response.data.message
+  //         : error.message;
+  //     dispatch({ type: ORDER_PAY_FAIL, payload: message });
+  //   }
+};
 
 export const listOrderMine = () => async (dispatch, getState) => {
   dispatch({ type: ORDER_MINE_LIST_REQUEST });

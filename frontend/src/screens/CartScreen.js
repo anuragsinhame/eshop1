@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../actions/cartActions";
 import MessageBox from "../components/MessageBox";
 
+const STATIC_HOST = process.env.REACT_APP_STATIC_HOST_URL;
+
 export default function CartScreen(props) {
   const productId = props.match.params.id;
   const qty = props.location.search
@@ -40,7 +42,11 @@ export default function CartScreen(props) {
               <li key={item.product}>
                 <div className="row">
                   <div>
-                    <img src={item.image} alt={item.name} className="small" />
+                    <img
+                      src={STATIC_HOST + item.image}
+                      alt={item.name}
+                      className="small"
+                    />
                   </div>
                   <div className="min-30">
                     <Link to={`/product/${item.product}`}>{item.name}</Link>
