@@ -15,7 +15,7 @@ export default function CategoryScreen(props) {
   }
 
   const productsData = useSelector((state) => state.categoryProductData);
-  const { loading, products, error } = productsData;
+  const { loading, categoryProducts, error } = productsData;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function CategoryScreen(props) {
       ) : (
         <div className="productsBox">
           {/* <Link to="/">Back to Result</Link> */}
-          {products.map((product) => {
+          {categoryProducts.map((product) => {
             return <ProductCard key={product._id} product={product} />;
           })}
         </div>
