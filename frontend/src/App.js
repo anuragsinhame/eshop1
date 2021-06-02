@@ -124,7 +124,7 @@ function App() {
           ></PrivateRoute>
           <Route path="/" component={HomeScreen} exact={true}></Route>
         </main>
-        <footer className="row center">All Rights Reserved</footer>
+        <footer className="row center">All Rights Reserved - &copy;Anurag Sinha</footer>
       </div>
     </BrowserRouter>
   );
