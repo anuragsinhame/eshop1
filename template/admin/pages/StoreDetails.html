@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../index.css" />
+    <title>Admin Page</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="side-navbar">
+        <div class="component">
+          <a href="StoreDetails.html">
+            <div class="component-image">
+              <img src="../assets/store-icon.svg" alt="Store" />
+            </div>
+            <div class="component-text">Store Details</div>
+          </a>
+        </div>
+        <div class="component">
+          <a href="ManageProducts.html">
+            <div class="component-image">
+              <img src="../assets/store-icon.svg" alt="Store" />
+            </div>
+            <div class="component-text">Manage Products</div>
+          </a>
+        </div>
+        <div class="component">
+          <a href="ManageUsers.html"
+            ><div class="component-image">
+              <img src="../assets/store-icon.svg" alt="Store" />
+            </div>
+            <div class="component-text">Manage Users</div></a
+          >
+        </div>
+        <div class="component">
+          <a href="ManageOrders.html"
+            ><div class="component-image">
+              <img src="../assets/store-icon.svg" alt="Store" />
+            </div>
+            <div class="component-text">Manage Orders</div></a
+          >
+        </div>
+        <div class="component">
+          <a href="SalesData.html"
+            ><div class="component-image">
+              <img src="../assets/store-icon.svg" alt="Store" />
+            </div>
+            <div class="component-text">Sales Data</div></a
+          >
+        </div>
+      </nav>
+      <main class="mainDiv">
+        <div class="main-component">
+          <div class="storeName">
+            <h3>Store Data</h3>
+            <div class="form-input">
+              <label for="storeName">Store Name</label>
+              <input type="text" name="storeName" id="storeName" />
+              <button type="button">Update</button>
+            </div>
+          </div>
+          <div class="pinCode">
+            <h3>Manage Pin Codes for delivery</h3>
+            <div class="form-input">
+              <label for="pinCodes">Pin Codes</label>
+              <input type="text" name="pinCodes" id="pinCodes" />
+              <button type="button">Add PinCode</button>
+            </div>
+            <div>
+              <h4>Currently Allowed Pin Codes</h4>
+              <div>
+                <span>206001 <button type="button">x</button></span>
+                <span>2006002 <button type="button">x</button></span>
+                <span>2006003 <button type="button">x</button></span>
+                <span>206130 <button type="button">x</button></span>
+                <span>206242 <button type="button">x</button></span>
+              </div>
+            </div>
+          </div>
+          <div class="slider">
+            <h3>Slider Images</h3>
+            <div class="form-input">
+              <label for="pinCodes">Add New Slider</label>
+              <input type="file" name="pinCodes" id="pinCodes" />
+              <button type="button">Upload</button>
+            </div>
+            <div>
+              <h4>Current Slider Images</h4>
+              <div>
+                <span>206001 <button type="button">x</button></span>
+                <span>2006002 <button type="button">x</button></span>
+                <span>2006003 <button type="button">x</button></span>
+                <span>206130 <button type="button">x</button></span>
+                <span>206242 <button type="button">x</button></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
