@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
+import publicCss from "../public.module.css";
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default function NavBar() {
@@ -20,15 +21,15 @@ export default function NavBar() {
   }, []);
 
   return (
-    <nav className="row">
+    <nav className={`${publicCss.nav} row`}>
       {isError && <Redirect to="/signin"></Redirect>}
       <div>
         {CategoryData.map((category) => (
-          <div className="dropdown">
+          <div className={publicCss.dropdown}>
             <Link to={`/products/${category._id}`}>
               {category.categoryName} <i className="fa fa-caret-down"></i>
             </Link>
-            <ul className="dropdown-content">
+            <ul className={publicCss.dropdownContent}>
               {category.subcategories.map((subCat) => (
                 <li key={subCat.id}>
                   <Link to={`/products/${category._id}/${subCat._id}`}>

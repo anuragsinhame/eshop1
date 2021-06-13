@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import publicCss from "../public.module.css";
+
 import { detailsUser, updateUserProfile } from "../actions/userActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
@@ -55,7 +57,7 @@ export default function ProfileScreen() {
   };
   return (
     <div>
-      <form className="form" onSubmit={submitHandler}>
+      <form className={publicCss.form} onSubmit={submitHandler}>
         <div>
           <h1>User Profile</h1>
         </div>

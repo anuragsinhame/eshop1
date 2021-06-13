@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryProducts } from "../actions/categoryActions";
 
+import publicCss from "../public.module.css";
+
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import ProductCard from "../components/ProductCard";
@@ -29,7 +31,7 @@ export default function CategoryScreen(props) {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <div className="productsBox">
+        <div className={publicCss.productsBox}>
           {/* <Link to="/">Back to Result</Link> */}
           {categoryProducts.map((product) => {
             return <ProductCard key={product._id} product={product} />;

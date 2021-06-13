@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+import publicCss from "../public.module.css";
+
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { createOrder } from "../actions/orderActions";
@@ -55,7 +57,7 @@ export default function PlaceOrderScreen(props) {
         <div className="col-2">
           <ul>
             <li>
-              <div className="card card-body">
+              <div className={`${publicCss.card} ${publicCss.cardBody}`}>
                 <h2>Shipping</h2>
                 <p>
                   <strong>Name:</strong>
@@ -69,7 +71,7 @@ export default function PlaceOrderScreen(props) {
               </div>
             </li>
             <li>
-              <div className="card card-body">
+              <div className={`${publicCss.card} ${publicCss.cardBody}`}>
                 <h2>Payment</h2>
                 <p>
                   <strong>Method:</strong> {cart.paymentMethod}
@@ -77,7 +79,7 @@ export default function PlaceOrderScreen(props) {
               </div>
             </li>
             <li>
-              <div className="card card-body">
+              <div className={`${publicCss.card} ${publicCss.cardBody}`}>
                 <h2>Order Items</h2>
                 <ul>
                   {cart.cartItems.map((item) => (
@@ -107,7 +109,7 @@ export default function PlaceOrderScreen(props) {
           </ul>
         </div>
         <div className="col-1">
-          <div className="card card-body">
+          <div className={`${publicCss.card} ${publicCss.cardBody}`}>
             <ul>
               <li>
                 <h2>Order Summary</h2>

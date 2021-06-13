@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 // import { PayPalButton } from "react-paypal-button-v2";
 
+import publicCss from "../public.module.css";
+
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { detailsOrder } from "../actions/orderActions";
@@ -70,7 +72,7 @@ export default function OrderScreen(props) {
         <div className="col-2">
           <ul>
             <li>
-              <div className="card card-body">
+              <div className={`${publicCss.card} ${publicCss.cardBody}`}>
                 <h2>Shipping</h2>
                 <p>
                   <strong>Name:</strong>
@@ -91,7 +93,7 @@ export default function OrderScreen(props) {
               </div>
             </li>
             <li>
-              <div className="card card-body">
+              <div className={`${publicCss.card} ${publicCss.cardBody}`}>
                 <h2>Payment</h2>
                 <p>
                   <strong>Method:</strong> {order.paymentMethod}
@@ -106,7 +108,7 @@ export default function OrderScreen(props) {
               </div>
             </li>
             <li>
-              <div className="card card-body">
+              <div className={`${publicCss.card} ${publicCss.cardBody}`}>
                 <h2>Order Items</h2>
                 <ul>
                   {order.orderItems.map((item) => (
@@ -136,7 +138,7 @@ export default function OrderScreen(props) {
           </ul>
         </div>
         <div className="col-1">
-          <div className="card card-body">
+          <div className={`${publicCss.card} ${publicCss.cardBody}`}>
             <ul>
               <li>
                 <h2>Order Summary</h2>

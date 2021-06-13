@@ -1,9 +1,11 @@
 import React from "react";
 
+import publicCss from "../public.module.css";
+
 export default function Rating(props) {
   const { rating, numReviews } = props;
   return (
-    <div className="rating">
+    <div className={publicCss.rating}>
       <span>
         <i
           className={
