@@ -1,0 +1,2 @@
+export const SET_ADMIN_PAGE = "SET_ADMIN_PAGE";
+export const SET_NON_ADMIN_PAGE = "SET_NON_ADMIN_PAGE";
