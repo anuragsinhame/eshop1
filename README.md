@@ -1,4 +1,5 @@
-# eshop1
+# eshop
+
 ## frontend
 just push the data to git repo and netlify will detect the change and will publish the new version
 

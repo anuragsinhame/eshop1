@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../actions/cartActions";
 import MessageBox from "../components/MessageBox";
 
+import publicCss from "../public.module.css";
+
 const STATIC_HOST = process.env.REACT_APP_STATIC_HOST_URL;
 
 export default function CartScreen(props) {
@@ -81,7 +83,7 @@ export default function CartScreen(props) {
         )}
       </div>
       <div className="col-1">
-        <div className="card card-body">
+        <div className={`${publicCss.card} ${publicCss.cardBody}`}>
           <ul>
             <li>
               <h2>

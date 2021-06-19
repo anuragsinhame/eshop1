@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../index.css" />
+    <title>Admin Page</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="side-navbar">
+        <div class="component">
+          <a href="StoreDetails.html">
+            <div class="component-image">
+              <img src="../assets/store-icon.svg" alt="Store" />
+            </div>
+            <div class="component-text">Store Details</div>
+          </a>
+        </div>
+        <div class="component">
+          <a href="ManageProducts.html">
+            <div class="component-image">
+              <img src="../assets/store-icon.svg" alt="Store" />
+            </div>
+            <div class="component-text">Manage Products</div>
+          </a>
+        </div>
+        <div class="component">
+          <a href="ManageUsers.html"
+            ><div class="component-image">
+              <img src="../assets/store-icon.svg" alt="Store" />
+            </div>
+            <div class="component-text">Manage Users</div></a
+          >
+        </div>
+        <div class="component">
+          <a href="ManageOrders.html"
+            ><div class="component-image">
+              <img src="../assets/store-icon.svg" alt="Store" />
+            </div>
+            <div class="component-text">Manage Orders</div></a
+          >
+        </div>
+        <div class="component">
+          <a href="SalesData.html"
+            ><div class="component-image">
+              <img src="../assets/store-icon.svg" alt="Store" />
+            </div>
+            <div class="component-text">Sales Data</div></a
+          >
+        </div>
+      </nav>
+      <main class="mainDiv">
+        <div class="main-component-header">
+          <a class="card-simple-a" href="./ManageProdCategories.html">
+            <div class="card-simple">Manage Categories</div>
+          </a>
+          <a class="card-simple-a" href="./ManageProdSubCategories.html">
+            <div class="card-simple">Manage Sub Categories</div>
+          </a>
+          <a class="card-simple-a" href="./ManageProds.html">
+            <div class="card-simple">Manage Products</div>
+          </a>
+        </div>
+        <div class="main-component">
+          <div>
+            <h3>Manage Sub Categories Categories</h3>
+            <div class="selectDiv">
+              <label for="category">Select Category</label>
+              <select name="category" id="category">
+                <option value="cat1">Category1</option>
+                <option value="cat2">Category2</option>
+                <option value="cat3">Category3</option>
+                <option value="cat4">Category4</option>
+                <option value="cat5">Category5</option>
+                <option value="cat6">Category6</option>
+              </select>
+            </div>
+            <div class="selectDiv">
+              <label for="subCategory">Select Category</label>
+              <select name="subCategory" id="subCategory">
+                <option value="subCat1">Sub Category1</option>
+                <option value="subCat2">Sub Category2</option>
+                <option value="subCat3">Sub Category3</option>
+                <option value="subCat4">Sub Category4</option>
+                <option value="subCat5">Sub Category5</option>
+                <option value="subCat6">Sub Category6</option>
+              </select>
+            </div>
+            <div class="prods">
+              <div class="prods-header">
+                <div>Prod Id</div>
+                <div>Category Id</div>
+                <div>Sub Category Id</div>
+                <div>Product Name</div>
+                <div>Stock</div>
+                <div>Update Stock</div>
+                <div>Edit</div>
+                <div>Delete</div>
+              </div>
+              <div class="prods-data">
+                <div class="prodIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="prodId1"
+                    placeholder="Prod Id"
+                    disabled
+                  />
+                </div>
+                <div class="catIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="catId1"
+                    placeholder="Cat Id"
+                    disabled
+                  />
+                </div>
+                <div class="subCatIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="subCatId1"
+                    placeholder="Sub Cat Id"
+                    disabled
+                  />
+                </div>
+                <div class="prodName">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="prodName1"
+                    placeholder="Product Name"
+                    disabled
+                  />
+                </div>
+                <div class="stockText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="stock1"
+                    placeholder="Stock"
+                    disabled
+                  />
+                </div>
+                <div class="inStock">
+                  <button class="w100" type="button">Update Stock</button>
+                </div>
+                <div class="catEdit">
+                  <button class="w100" type="button">Edit</button>
+                </div>
+                <div class="catDelete">
+                  <button class="w100" type="button">Delete</button>
+                </div>
+              </div>
+              <div class="prods-data">
+                <div class="prodIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="prodId2"
+                    placeholder="Prod Id"
+                    disabled
+                  />
+                </div>
+                <div class="catIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="catId2"
+                    placeholder="Cat Id"
+                    disabled
+                  />
+                </div>
+                <div class="subCatIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="subCatId2"
+                    placeholder="Sub Cat Id"
+                    disabled
+                  />
+                </div>
+                <div class="prodName">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="prodName2"
+                    placeholder="Product Name"
+                    disabled
+                  />
+                </div>
+                <div class="stockText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="stock2"
+                    placeholder="Stock"
+                    disabled
+                  />
+                </div>
+                <div class="inStock">
+                  <button class="w100" type="button">Update Stock</button>
+                </div>
+                <div class="catEdit">
+                  <button class="w100" type="button">Edit</button>
+                </div>
+                <div class="catDelete">
+                  <button class="w100" type="button">Delete</button>
+                </div>
+              </div>
+              <div class="prods-data">
+                <div class="prodIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="prodId3"
+                    placeholder="Prod Id"
+                    disabled
+                  />
+                </div>
+                <div class="catIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="catId3"
+                    placeholder="Cat Id"
+                    disabled
+                  />
+                </div>
+                <div class="subCatIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="subCatId3"
+                    placeholder="Sub Cat Id"
+                    disabled
+                  />
+                </div>
+                <div class="prodName">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="prodName3"
+                    placeholder="Product Name"
+                    disabled
+                  />
+                </div>
+                <div class="stockText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="stock3"
+                    placeholder="Stock"
+                    disabled
+                  />
+                </div>
+                <div class="inStock">
+                  <button class="w100" type="button">Update Stock</button>
+                </div>
+                <div class="catEdit">
+                  <button class="w100" type="button">Edit</button>
+                </div>
+                <div class="catDelete">
+                  <button class="w100" type="button">Delete</button>
+                </div>
+              </div>
+              <div class="prods-data">
+                <div class="prodIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="prodId4"
+                    placeholder="Prod Id"
+                    disabled
+                  />
+                </div>
+                <div class="catIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="catId4"
+                    placeholder="Cat Id"
+                    disabled
+                  />
+                </div>
+                <div class="subCatIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="subCatId4"
+                    placeholder="Sub Cat Id"
+                    disabled
+                  />
+                </div>
+                <div class="prodName">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="prodName4"
+                    placeholder="Product Name"
+                    disabled
+                  />
+                </div>
+                <div class="stockText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="stock4"
+                    placeholder="Stock"
+                    disabled
+                  />
+                </div>
+                <div class="inStock">
+                  <button class="w100" type="button">Update Stock</button>
+                </div>
+                <div class="catEdit">
+                  <button class="w100" type="button">Edit</button>
+                </div>
+                <div class="catDelete">
+                  <button class="w100" type="button">Delete</button>
+                </div>
+              </div>
+              <div class="prods-data">
+                <div class="prodIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="prodId5"
+                    placeholder="Prod Id"
+                    disabled
+                  />
+                </div>
+                <div class="catIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="catId5"
+                    placeholder="Cat Id"
+                    disabled
+                  />
+                </div>
+                <div class="subCatIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="subCatId5"
+                    placeholder="Sub Cat Id"
+                    disabled
+                  />
+                </div>
+                <div class="prodName">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="prodName5"
+                    placeholder="Product Name"
+                    disabled
+                  />
+                </div>
+                <div class="stockText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="stock5"
+                    placeholder="Stock"
+                    disabled
+                  />
+                </div>
+                <div class="inStock">
+                  <button class="w100" type="button">Update Stock</button>
+                </div>
+                <div class="catEdit">
+                  <button class="w100" type="button">Edit</button>
+                </div>
+                <div class="catDelete">
+                  <button class="w100" type="button">Delete</button>
+                </div>
+              </div>
+              <div class="prods-data">
+                <div class="prodIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="prodId6"
+                    placeholder="Prod Id"
+                    disabled
+                  />
+                </div>
+                <div class="catIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="catId6"
+                    placeholder="Cat Id"
+                    disabled
+                  />
+                </div>
+                <div class="subCatIdText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="subCatId6"
+                    placeholder="Sub Cat Id"
+                    disabled
+                  />
+                </div>
+                <div class="prodName">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="prodName6"
+                    placeholder="Product Name"
+                    disabled
+                  />
+                </div>
+                <div class="stockText">
+                  <input
+                    class="w100"
+                    type="text"
+                    name="stock6"
+                    placeholder="Stock"
+                    disabled
+                  />
+                </div>
+                <div class="inStock">
+                  <button class="w100" type="button">Update Stock</button>
+                </div>
+                <div class="catEdit">
+                  <button class="w100" type="button">Edit</button>
+                </div>
+                <div class="catDelete">
+                  <button class="w100" type="button">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
