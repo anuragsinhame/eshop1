@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import publicCss from "../public.module.css";
+
 import { listOrderMine } from "../actions/orderActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
@@ -21,7 +23,7 @@ export default function OrderHistoryScreen(props) {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-        <table className="table">
+        <table className={publicCss.table}>
           <thead>
             <tr>
               <th>ID</th>

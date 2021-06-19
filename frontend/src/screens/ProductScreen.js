@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+import publicCss from "../public.module.css";
+
 import Rating from "../components/Rating";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
@@ -63,12 +65,12 @@ export default function ProductScreen(props) {
               </ul>
             </div>
             <div className="col-1">
-              <div className="card card-body">
+              <div className={`${publicCss.card} ${publicCss.cardBody}`}>
                 <ul>
                   <li>
                     <div className="row">
                       <div>Price</div>
-                      <div className="price">₹{product.price}</div>
+                      <div className={publicCss.price}>₹{product.price}</div>
                     </div>
                   </li>
                   <li>

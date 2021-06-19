@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 
@@ -19,24 +20,20 @@ import SigninScreen from "./screens/SigninScreen";
 import NavBar from "./components/NavBar";
 
 import PrivateRoute from "./components/PrivateRoute";
+=======
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+import PublicLayout from "./components/PublicLayout";
+import ProtectedLayout from "./components/ProtectedLayout";
+import AdminRoute from "./components/AdminRoute";
+>>>>>>> a8a068809179321f989551c6dbdef68b17559fa9
 
 import { StoreConstants } from "./storeData";
 import CategoryScreen from "./screens/CategoryScreen";
 
 function App() {
-  const cart = useSelector((state) => state.cart);
-  const cartItems = cart.cartItems;
-
-  const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo } = userSignin;
-
-  const dispatch = useDispatch();
-  const signoutHandler = () => {
-    dispatch(signout());
-  };
-
   return (
     <BrowserRouter>
+<<<<<<< HEAD
       <div className="grid-container">
         <header className="row">
           <div>
@@ -126,6 +123,12 @@ function App() {
         </main>
         <footer className="row center">All Rights Reserved - &copy;Anurag Sinha</footer>
       </div>
+=======
+      <Switch>
+        <AdminRoute path="/admin" component={ProtectedLayout}></AdminRoute>
+        <Route path="/" component={PublicLayout}></Route>
+      </Switch>
+>>>>>>> a8a068809179321f989551c6dbdef68b17559fa9
     </BrowserRouter>
   );
 }

@@ -7,6 +7,10 @@ import orderRouter from "./routers/orderRouter.js";
 import productRouter from "./routers/productRouter.js";
 import userRouter from "./routers/userRouter.js";
 import categoryRouter from "./routers/categoryRouter.js";
+<<<<<<< HEAD
+=======
+import storeRouter from "./routers/storeRouter.js";
+>>>>>>> a8a068809179321f989551c6dbdef68b17559fa9
 
 dotenv.config();
 const port = process.env.PORT || 4200;
@@ -44,6 +48,10 @@ app.use("/api/users", userRouter);
 app.use("/api/products", productRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/category", categoryRouter);
+<<<<<<< HEAD
+=======
+app.use("/api/store", storeRouter);
+>>>>>>> a8a068809179321f989551c6dbdef68b17559fa9
 
 // paypal integration
 app.get("/api/config/paypal", (req, res) => {
