@@ -27,7 +27,6 @@ export default function AdminHomeScreen() {
   // const userSignin = useSelector((state) => state.userSignin);
   // const { userInfo } = userSignin;
 
-  console.log("In AdminRoute - ProtectedLayout - HomeScreen");
   const dispatch = useDispatch();
   const signoutHandler = () => {
     dispatch(signout());
@@ -89,9 +88,7 @@ export default function AdminHomeScreen() {
             ></Route>
             <Route
               path="/admin/ManageProdsData"
-              render={(props) => (
-                <ManageProdsDataScreen DefaultModule="subCat11"></ManageProdsDataScreen>
-              )}
+              render={(props)=><ManageProdsDataScreen DefaultModule="subCat11"></ManageProdsDataScreen>}
               // component={ManageProdsDataScreen}
               // props={DefaultModule}
             ></Route>
