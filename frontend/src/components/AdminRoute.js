@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 export default function AdminRoute({ component: Component, ...rest }) {
   const { userInfo } = useSelector((state) => state.userSignin);
 
+  console.log("In AdminRoute");
   return (
     <Route
       {...rest}

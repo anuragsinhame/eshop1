@@ -5,6 +5,7 @@ import AdminHomeScreen from "../admin/screens/AdminHomeScreen";
 import AdminRoute from "./AdminRoute";
 
 export default function ProtectedLayout() {
+  console.log("In AdminRoute - ProtectedLayout");
   return (
     <BrowserRouter>
       {/* "?" is added so that id can be empty and user can be redirected to cart component */}
