@@ -10,7 +10,7 @@ export default function ProtectedLayout() {
     <BrowserRouter>
       {/* "?" is added so that id can be empty and user can be redirected to cart component */}
       {/* <div>Hi Admin ProtectedLayout</div> */}
-      <AdminRoute path="/admin" component={AdminHomeScreen}></AdminRoute>
+      <Route path="/admin" component={AdminHomeScreen}></Route>
       {/* <Route path="/cart/:id?" component={CartScreen}></Route>
           <Route path="/product/:id" component={ProductScreen}></Route>
           <Route path="/orderhistory" component={OrderHistoryScreen}></Route>
