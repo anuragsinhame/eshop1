@@ -11,12 +11,9 @@ import {
   ORDER_MINE_LIST_FAIL,
   ORDER_MINE_LIST_REQUEST,
   ORDER_MINE_LIST_SUCCESS,
-<<<<<<< HEAD
-=======
   // ORDER_PAY_FAIL,
   // ORDER_PAY_REQUEST,
   // ORDER_PAY_SUCCESS,
->>>>>>> bac956439b8cfbe4a3f74d04474be23e16ca885e
 } from "../constants/orderConstants";
 
 const API_URL = process.env.REACT_APP_API_URL;
