@@ -22,6 +22,11 @@ export default function OrderScreen(props) {
 
   const orderPay = useSelector((state) => state.orderPay);
   const {
+<<<<<<< HEAD
+=======
+    // loading: loadingPay,
+    // error: errorPay,
+>>>>>>> bac956439b8cfbe4a3f74d04474be23e16ca885e
     success: successPay,
   } = orderPay;
 

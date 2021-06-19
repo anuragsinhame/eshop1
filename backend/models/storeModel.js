@@ -10,6 +10,6 @@ const storeSchema = new mongoose.Schema(
   }
 );
 
-const Store = mongoose.model("Store", userSchema);
+const Store = mongoose.model("Store", storeSchema);
 
 export default Store;
