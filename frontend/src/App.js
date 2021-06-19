@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Redirect, Route, BrowserRouter, useLocation } from "react-router-dom";
+import React from "react";
+import { Redirect, Route, BrowserRouter } from "react-router-dom";
 import AdminRoute from "./components/AdminRoute";
 
 import publicCss from "./public.module.css";
@@ -20,19 +20,25 @@ import ProfileScreen from "./screens/ProfileScreen";
 import AdminHomeScreen from "./admin/screens/AdminHomeScreen";
 import HomeScreen from "./screens/HomeScreen";
 import PrivateRoute from "./components/PrivateRoute";
-import { useDispatch, useSelector } from "react-redux";
-import { SET_NON_ADMIN_PAGE } from "./constants/storeConstants";
+import { useSelector } from "react-redux";
+// import { SET_NON_ADMIN_PAGE } from "./constants/storeConstants";
 
 function App() {
   const { isAdminPage } = useSelector((state) => state.adminPageStatus);
-  console.log("Admin", isAdminPage);
+  // console.log("Admin", isAdminPage);
 
-  const dispatch = useDispatch();
-  const location = useLocation();
-  console.log("Location", location.pathname);
-  useEffect(() => {
-    dispatch({ type: SET_NON_ADMIN_PAGE });
-  }, [dispatch]);
+  // const dispatch = useDispatch();
+  // const location = useLocation();
+
+  // const matching = matchPath("admin/", { path: location, exact: false });
+  // console.log("matching", matching);
+
+  // console.log("Location", location.pathname);
+  // useEffect(() => {
+  //   console.log("Is Admin Page", isAdminPage);
+  //   // dispatch({ type: SET_NON_ADMIN_PAGE });
+  //   console.log("New Admin Page", isAdminPage);
+  // }, [dispatch]);
 
   return (
     <BrowserRouter>
