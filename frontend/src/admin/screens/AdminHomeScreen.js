@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import axios from "axios";
 import { useDispatch } from "react-redux";
 import { Link, Route, BrowserRouter, Switch } from "react-router-dom";
@@ -11,6 +11,7 @@ import ManageProdsDataScreen from "./ManageProdsDataScreen";
 import ManageUsersScreen from "./ManageUsersScreen";
 import ManageOrdersScreen from "./ManageOrdersScreen";
 import SalesDataScreen from "./SalesDataScreen";
+import { SET_ADMIN_PAGE } from "../../constants/storeConstants";
 
 // import { Carousel } from "react-responsive-carousel";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -28,6 +29,11 @@ export default function AdminHomeScreen() {
   // const { userInfo } = userSignin;
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: SET_ADMIN_PAGE });
+  }, [dispatch]);
+
   const signoutHandler = () => {
     dispatch(signout());
   };
@@ -88,7 +94,9 @@ export default function AdminHomeScreen() {
             ></Route>
             <Route
               path="/admin/ManageProdsData"
-              render={(props)=><ManageProdsDataScreen DefaultModule="subCat11"></ManageProdsDataScreen>}
+              render={(props) => (
+                <ManageProdsDataScreen DefaultModule="subCat11"></ManageProdsDataScreen>
+              )}
               // component={ManageProdsDataScreen}
               // props={DefaultModule}
             ></Route>
