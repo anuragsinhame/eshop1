@@ -1,14 +1,15 @@
 // TO DO
-  // Update values on new insert or update
+// Update values on new insert or update
 import React, { useEffect, useState } from "react";
 // import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Route, BrowserRouter } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import { Link, Route, BrowserRouter } from "react-router-dom";
 import axios from "../../../node_modules/axios/index";
+// import crypto from "crypto";
 
 import adminCss from "../admin.module.css";
 import LoadingBox from "../../components/LoadingBox";
-import PinCode from "../components/PinCode";
+import { uploadUnsignedImage } from "../../utilities/ImageUpload";
 
 // import { Carousel } from "react-responsive-carousel";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -26,6 +27,12 @@ export default function StoreDetailsScreen() {
   const [storeName, setStoreName] = useState("");
   const [pinCode, setPinCode] = useState("");
   const [pinCodes, setPinCodes] = useState([]);
+  const [imageData, setImageData] = useState({
+    image: null,
+    desc: "",
+    alt: "",
+  });
+  const [sliderImages, setSliderImages] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
@@ -39,7 +46,11 @@ export default function StoreDetailsScreen() {
       //   (pinCodeRes) => pinCodeRes.value
       // );
       setPinCodes(dbPinCodes.data.PinCodes);
-      // console.log("DB PIN", dbPinCodes.data.PinCodes);
+      console.log("DB PIN", dbPinCodes.data.PinCodes);
+      // getting slider images
+      let dbSliderImages = await axios.get(`${API_URL}/api/store/sliderImages`);
+      setSliderImages(dbSliderImages.data.SliderImages);
+      console.log("DB Slider Images", dbSliderImages.data.SliderImages);
       setLoading(false);
     }
     fetchData();
@@ -63,6 +74,51 @@ export default function StoreDetailsScreen() {
     });
     setLoading(false);
     alert("Store Name Updated");
+  };
+
+  const deletePin = async (pin) => {
+    setLoading(true);
+    console.log("Delete" + pin);
+    await axios.delete(`${API_URL}/api/store/pinCode`, {
+      data: {
+        pinCode: pin,
+      },
+    });
+    setLoading(false);
+    alert("Pin Deleted");
+  };
+
+  const uploadImage = async () => {
+    setLoading(true);
+    try {
+      const uploadImgData = await uploadUnsignedImage(
+        imageData.image,
+        "e6zcsf21"
+      );
+
+      console.log("uploadImgData", uploadImgData);
+      let imgData = {
+        url: uploadImgData.url,
+        description: imageData.desc,
+        alt: imageData.alt,
+      };
+      await axios.post(`${API_URL}/api/store/sliderImage`, { ...imgData });
+      setLoading(false);
+    } catch (error) {
+      console.log("Error in uploading image", error);
+    }
+  };
+
+  const deleteImage = async (imageId) => {
+    setLoading(true);
+    console.log("Delete" + imageId);
+    await axios.delete(`${API_URL}/api/store/sliderImage`, {
+      data: {
+        id: imageId,
+      },
+    });
+    setLoading(false);
+    alert("Image Deleted");
   };
 
   return (
@@ -107,36 +163,84 @@ export default function StoreDetailsScreen() {
               <h4>Currently Allowed Pin Codes</h4>
               <div>
                 {pinCodes.map((pinObj) => (
-                  <PinCode pinCode={pinObj.value}></PinCode>
+                  <span key={pinObj._id}>
+                    <span>{pinObj.value}</span>
+                    <button
+                      type="button"
+                      onClick={(e) => deletePin(pinObj.value)}
+                    >
+                      x
+                    </button>
+                  </span>
                 ))}
               </div>
             </div>
           </div>
           <div className="slider">
             <h3>Slider Images</h3>
-            <div className={adminCss.formInput}>
-              <label htmlFor="pinCodes">Add New Slider</label>
-              <input type="file" name="pinCodes" id="pinCodes" />
-              <button type="button">Upload</button>
+            <div>
+              <h5>Add New Slider</h5>
             </div>
+            <div className={adminCss.formInput}>
+              <label htmlFor="sliderImage">Select Single Image</label>
+              <input
+                type="file"
+                name="sliderImage"
+                id="sliderImage"
+                onChange={(e) =>
+                  setImageData({ ...imageData, image: e.target.files[0] })
+                }
+              />
+            </div>
+            <div className={adminCss.formInput}>
+              <label htmlFor="sliderDesc">Slider Description</label>
+              <input
+                type="text"
+                name="sliderDesc"
+                id="sliderDesc"
+                placeholder="Slider Description"
+                value={imageData.desc}
+                onChange={(e) =>
+                  setImageData({ ...imageData, desc: e.target.value })
+                }
+              />
+            </div>
+            <div className={adminCss.formInput}>
+              <label htmlFor="imgDesc">Image Description</label>
+              <input
+                type="text"
+                name="imgDesc"
+                id="imgDesc"
+                placeholder="Image Description"
+                value={imageData.alt}
+                onChange={(e) =>
+                  setImageData({ ...imageData, alt: e.target.value })
+                }
+              />
+            </div>
+            <button type="button" onClick={uploadImage}>
+              Add / Update
+            </button>
             <div>
               <h4>Current Slider Images</h4>
               <div>
-                <span>
-                  206001 <button type="button">x</button>
-                </span>
-                <span>
-                  2006002 <button type="button">x</button>
-                </span>
-                <span>
-                  2006003 <button type="button">x</button>
-                </span>
-                <span>
-                  206130 <button type="button">x</button>
-                </span>
-                <span>
-                  206242 <button type="button">x</button>
-                </span>
+                {sliderImages.map((sliderImage) => (
+                  <span key={sliderImage._id}>
+                    <img
+                      src={sliderImage.url}
+                      alt={sliderImage.alt}
+                      style={{ width: "75px", height: "50px" }}
+                    />
+                    <span>
+                      <button
+                        type="button"
+                        onClick={(e) => deleteImage(sliderImage._id)}
+                      >
+                        x
+                      </button>
+                    </span>
+                  </span>
+                ))}
               </div>
             </div>
           </div>

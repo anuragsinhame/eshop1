@@ -1,7 +1,7 @@
 import React from "react";
 // import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Route, BrowserRouter } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import { Link, Route, BrowserRouter } from "react-router-dom";
 
 import adminCss from "../admin.module.css";
 

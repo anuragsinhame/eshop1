@@ -1,5 +1,6 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
+import SliderImage from "../models/sliderImageModel.js";
 import Store from "../models/storeModel.js";
 
 const storeRouter = express.Router();
@@ -82,10 +83,60 @@ storeRouter.delete(
   "/pinCode",
   expressAsyncHandler(async (req, res) => {
     const pinCode = req.body.pinCode;
+    console.log("Deleting" + pinCode);
     try {
       const response = await Store.deleteOne({
         property: "PinCode",
         value: pinCode,
+      });
+      res.status(200).send({ response });
+    } catch (error) {
+      res.status(404).send(error);
+    }
+  })
+);
+
+storeRouter.get(
+  "/sliderImages",
+  expressAsyncHandler(async (req, res) => {
+    // await User.remove({});
+    try {
+      const response = await SliderImage.find();
+      res.status(200).send({ SliderImages: response });
+    } catch (error) {
+      res.status(404).send(error);
+    }
+  })
+);
+
+storeRouter.post(
+  "/sliderImage",
+  expressAsyncHandler(async (req, res) => {
+    const { url, description, alt } = req.body;
+    console.log(url, description, alt);
+    const sliderImageNew = new SliderImage({
+      url,
+      description,
+      alt,
+    });
+    try {
+      const response = await sliderImageNew.save();
+      res.status(200).send({ response });
+    } catch (error) {
+      console.log("Errrrr", error);
+      res.status(404).send(error);
+    }
+  })
+);
+
+storeRouter.delete(
+  "/sliderImage",
+  expressAsyncHandler(async (req, res) => {
+    const id = req.body.id;
+    console.log("Deleting" + id);
+    try {
+      const response = await SliderImage.deleteOne({
+        _id: id,
       });
       res.status(200).send({ response });
     } catch (error) {
