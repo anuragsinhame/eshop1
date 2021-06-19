@@ -31,6 +31,7 @@ export default function AdminHomeScreen() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("In Admin Home");
     dispatch({ type: SET_ADMIN_PAGE });
   }, [dispatch]);
 
