@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { Route, BrowserRouter } from "react-router-dom";
 
 import AdminHomeScreen from "../admin/screens/AdminHomeScreen";
 import AdminRoute from "./AdminRoute";
