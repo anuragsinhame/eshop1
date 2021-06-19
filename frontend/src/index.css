@@ -172,9 +172,3 @@ img.large {
 .w25 {
   width: 100%;
 }
-
-/* Products */
-.productsBox{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
