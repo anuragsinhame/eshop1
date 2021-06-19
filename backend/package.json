@@ -6,11 +6,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-<<<<<<< HEAD
-    "startDev": "npx nodemon server.js",
-=======
     "dev": "npx nodemon server.js",
->>>>>>> a8a068809179321f989551c6dbdef68b17559fa9
     "start": "node server.js"
   },
   "keywords": [],

@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-<<<<<<< HEAD
-=======
 import publicCss from "../public.module.css";
 
->>>>>>> a8a068809179321f989551c6dbdef68b17559fa9
 import { saveShippingAddress } from "../actions/cartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { StoreConstants } from "../storeData.js";
@@ -53,11 +50,7 @@ export default function ShippingAddressScreen(props) {
     <div>
       <CheckoutSteps step1 step2></CheckoutSteps>
       {error.error && <MessageBox variant="danger">{error.message}</MessageBox>}
-<<<<<<< HEAD
-      <form className="form" onSubmit={submitHandler}>
-=======
       <form className={publicCss.form} onSubmit={submitHandler}>
->>>>>>> a8a068809179321f989551c6dbdef68b17559fa9
         <div>
           <h1>Shipping Address</h1>
         </div>

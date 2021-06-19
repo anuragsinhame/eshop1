@@ -4,11 +4,8 @@ import { Link } from "react-router-dom";
 import { addToCart, removeFromCart } from "../actions/cartActions";
 import MessageBox from "../components/MessageBox";
 
-<<<<<<< HEAD
-=======
 import publicCss from "../public.module.css";
 
->>>>>>> a8a068809179321f989551c6dbdef68b17559fa9
 const STATIC_HOST = process.env.REACT_APP_STATIC_HOST_URL;
 
 export default function CartScreen(props) {

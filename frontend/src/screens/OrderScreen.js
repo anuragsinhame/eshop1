@@ -2,11 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 // import { PayPalButton } from "react-paypal-button-v2";
-<<<<<<< HEAD
-=======
 
 import publicCss from "../public.module.css";
->>>>>>> a8a068809179321f989551c6dbdef68b17559fa9
 
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";

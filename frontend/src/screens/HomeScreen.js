@@ -5,11 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-<<<<<<< HEAD
-=======
 import publicCss from "../public.module.css";
 
->>>>>>> a8a068809179321f989551c6dbdef68b17559fa9
 import ProductCard from "../components/ProductCard";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
