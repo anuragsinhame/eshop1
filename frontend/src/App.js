@@ -10,10 +10,10 @@ import CategoryScreen from "./screens/CategoryScreen";
 function App() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path="/" component={PublicLayout}></Route>
+      {/* <Switch> */}
         <AdminRoute path="/admin" component={ProtectedLayout}></AdminRoute>
-      </Switch>
+        <Route path="/" component={PublicLayout}></Route>
+      {/* </Switch> */}
     </BrowserRouter>
   );
 }
