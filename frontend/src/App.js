@@ -11,8 +11,8 @@ function App() {
   return (
     <BrowserRouter>
       {/* <Switch> */}
-        <AdminRoute path="/admin" component={ProtectedLayout}></AdminRoute>
-        <Route path="/" component={PublicLayout}></Route>
+      <Route path="/" component={PublicLayout}></Route>
+      <Route path="/admin" component={ProtectedLayout}></Route>
       {/* </Switch> */}
     </BrowserRouter>
   );
