@@ -69,7 +69,7 @@ categoryRouter.get(
   "/",
   expressAsyncHandler(async (req, res) => {
     try {
-      console.log('Fetching Category Data');
+      // console.log('Fetching Category Data');
       const CategoryData = await Category.find({});
       if (CategoryData.length > 0) {
         res.status(201).send({
