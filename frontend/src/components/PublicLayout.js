@@ -76,7 +76,7 @@ export default function PublicLayout() {
               <Link to="/signin">Sign In</Link>
             )}
             {userInfo && userInfo.isAdmin && (
-              <a href="/admin">Admin Dashboard</a>
+              <Link to="/admin">Admin Dashboard</Link>
             )}
           </div>
         </header>
