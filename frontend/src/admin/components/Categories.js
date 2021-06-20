@@ -1,5 +1,6 @@
-import React from "react";
-// import axios from "axios";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
 // import { useDispatch, useSelector } from "react-redux";
 // import { Link, Route, BrowserRouter } from "react-router-dom";
 
@@ -16,7 +17,90 @@ import adminCss from "../admin.module.css";
 
 // import { StoreConstants } from "../storeData";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export default function Categories() {
+  const emptyCategory = {
+    _id: null,
+    categoryName: "",
+    subcategories: [],
+  };
+  const [loading, setLoading] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [categoryFieldState, setCategoryFieldState] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      let dbCategoriesRes = await axios.get(`${API_URL}/api/category`);
+      setCategories(dbCategoriesRes.data.CategoryData);
+      setCategoryFieldState(() => {
+        let newCatField = categories.map((category) => {
+          return { _id: category._id, mode: "" };
+        });
+        console.log("new", newCatField);
+        return [...newCatField];
+      });
+      // let dbStoreNameRes = await axios.get(`${API_URL}/api/store/storeName`);
+      // setStoreName(dbStoreNameRes.data.StoreName);
+      // let dbPinCodes = await axios.get(`${API_URL}/api/store/pinCodes`);
+      // // let newPinCodes = dbPinCodes.data.PinCodes.map(
+      // //   (pinCodeRes) => pinCodeRes.value
+      // // );
+      // setPinCodes(dbPinCodes.data.PinCodes);
+      // console.log("DB PIN", dbPinCodes.data.PinCodes);
+      // // getting slider images
+      // let dbSliderImages = await axios.get(`${API_URL}/api/store/sliderImages`);
+      // setSliderImages(dbSliderImages.data.SliderImages);
+      // console.log("DB Slider Images", dbSliderImages.data.SliderImages);
+      // setLoading(false);
+    }
+    fetchData();
+    // console.log("Categories", categories);
+    // console.log("CategoriesField", categoryFieldState);
+  }, []);
+
+  const createCategory = () => {
+    console.log("Adding new category", categories);
+    // let newCategories = categories;
+    // newCategories.push(emptyCategory);
+    setCategories((categories) => [...categories, emptyCategory]);
+    // console.log("Added", categories);
+    console.log("Categories", categories);
+    console.log("CategoriesField", categoryFieldState);
+  };
+
+  // const editCategory = (categoryId) => {
+  //   console.log("Edit Category", categoryId);
+  // };
+
+  const updateCategory = async (categoryId) => {
+    let categoryToUpdate = categories.filter(
+      (category) => categoryId === category._id
+    )[0];
+    // category
+    console.log("Updating", categoryId);
+    let updateCategoryRes = await axios.put(
+      `${API_URL}/api/category/updateCategory`,
+      categoryToUpdate
+    );
+    console.log("updateRes", updateCategoryRes);
+  };
+
+  const deleteCategory = async (categoryId) => {
+    console.log("Delete Category", categoryId);
+    let deleteCategoryRes = await axios.delete(
+      `${API_URL}/api/category/deleteCategory`,
+      {
+        data: {
+          _id: categoryId,
+        },
+      }
+    );
+    console.log("deleteRes", deleteCategoryRes);
+  };
+
   return (
     <div className={adminCss.mainComponent}>
       <div>
@@ -28,204 +112,82 @@ export default function Categories() {
             <div>Edit</div>
             <div>Delete</div>
           </div>
-          <div className={adminCss.categoryData}>
-            <div className="catIdText">
-              <input
-                className="w100"
-                type="text"
-                name="catId1"
-                placeholder="Cat Id"
-              />
+
+          {categories.map((category) => (
+            <div className={adminCss.categoryData} key={category._id}>
+              <div className="catIdText">
+                <input
+                  className="w100"
+                  type="text"
+                  placeholder="Cat Id"
+                  value={category._id}
+                  disabled={category._id !== null}
+                  onChange={(e) => {
+                    setCategories((categories) => {
+                      return [
+                        ...categories.map((oldCategory) => {
+                          if (oldCategory._id === null) {
+                            oldCategory._id = e.target.value;
+                          }
+                          return oldCategory;
+                        }),
+                      ];
+                    });
+                  }}
+                />
+              </div>
+              <div className="catName">
+                <input
+                  className="w100"
+                  type="text"
+                  placeholder="Cat Name"
+                  value={category.categoryName}
+                  onChange={(e) => {
+                    setCategories((categories) => {
+                      return [
+                        ...categories.map((oldCategory) => {
+                          if (category._id === oldCategory._id) {
+                            oldCategory.categoryName = e.target.value;
+                          }
+                          return oldCategory;
+                        }),
+                      ];
+                    });
+                  }}
+                  // disabled
+                />
+              </div>
+              <div className="catEdit">
+                {/* <button
+                  className="w100"
+                  type="button"
+                  onClick={(e) => editCategory(category._id)}
+                >
+                  Edit
+                </button> */}
+                <button
+                  className="w100"
+                  type="button"
+                  onClick={(e) => updateCategory(category._id)}
+                >
+                  Update
+                </button>
+              </div>
+              <div className="catDelete">
+                <button
+                  className="w100"
+                  type="button"
+                  onClick={(e) => deleteCategory(category._id)}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
-            <div className="catName">
-              <input
-                className="w100"
-                type="text"
-                name="catName1"
-                placeholder="Cat Name"
-              />
-            </div>
-            <div className="catEdit">
-              <button className="w100" type="button">
-                Edit
-              </button>
-            </div>
-            <div className="catDelete">
-              <button className="w100" type="button">
-                Delete
-              </button>
-            </div>
-          </div>
-          <div className="category-data">
-            <div className="catIdText">
-              <input
-                className="w100"
-                type="text"
-                name="catId1"
-                placeholder="Cat Id"
-              />
-            </div>
-            <div className="catName">
-              <input
-                className="w100"
-                type="text"
-                name="catName1"
-                placeholder="Cat Name"
-              />
-            </div>
-            <div className="catEdit">
-              <button className="w100" type="button">
-                Edit
-              </button>
-            </div>
-            <div className="catDelete">
-              <button className="w100" type="button">
-                Delete
-              </button>
-            </div>
-          </div>
-          <div className="category-data">
-            <div className="catIdText">
-              <input
-                className="w100"
-                type="text"
-                name="catId1"
-                placeholder="Cat Id"
-              />
-            </div>
-            <div className="catName">
-              <input
-                className="w100"
-                type="text"
-                name="catName1"
-                placeholder="Cat Name"
-              />
-            </div>
-            <div className="catEdit">
-              <button className="w100" type="button">
-                Edit
-              </button>
-            </div>
-            <div className="catDelete">
-              <button className="w100" type="button">
-                Delete
-              </button>
-            </div>
-          </div>
-          <div className="category-data">
-            <div className="catIdText">
-              <input
-                className="w100"
-                type="text"
-                name="catId1"
-                placeholder="Cat Id"
-              />
-            </div>
-            <div className="catName">
-              <input
-                className="w100"
-                type="text"
-                name="catName1"
-                placeholder="Cat Name"
-              />
-            </div>
-            <div className="catEdit">
-              <button className="w100" type="button">
-                Edit
-              </button>
-            </div>
-            <div className="catDelete">
-              <button className="w100" type="button">
-                Delete
-              </button>
-            </div>
-          </div>
-          <div className="category-data">
-            <div className="catIdText">
-              <input
-                className="w100"
-                type="text"
-                name="catId1"
-                placeholder="Cat Id"
-              />
-            </div>
-            <div className="catName">
-              <input
-                className="w100"
-                type="text"
-                name="catName1"
-                placeholder="Cat Name"
-              />
-            </div>
-            <div className="catEdit">
-              <button className="w100" type="button">
-                Edit
-              </button>
-            </div>
-            <div className="catDelete">
-              <button className="w100" type="button">
-                Delete
-              </button>
-            </div>
-          </div>
-          <div className="category-data">
-            <div className="catIdText">
-              <input
-                className="w100"
-                type="text"
-                name="catId1"
-                placeholder="Cat Id"
-              />
-            </div>
-            <div className="catName">
-              <input
-                className="w100"
-                type="text"
-                name="catName1"
-                placeholder="Cat Name"
-              />
-            </div>
-            <div className="catEdit">
-              <button className="w100" type="button">
-                Edit
-              </button>
-            </div>
-            <div className="catDelete">
-              <button className="w100" type="button">
-                Delete
-              </button>
-            </div>
-          </div>
-          <div className="category-data">
-            <div className="catIdText">
-              <input
-                className="w100"
-                type="text"
-                name="catId1"
-                placeholder="Cat Id"
-              />
-            </div>
-            <div className="catName">
-              <input
-                className="w100"
-                type="text"
-                name="catName1"
-                placeholder="Cat Name"
-              />
-            </div>
-            <div className="catEdit">
-              <button className="w100" type="button">
-                Edit
-              </button>
-            </div>
-            <div className="catDelete">
-              <button className="w100" type="button">
-                Delete
-              </button>
-            </div>
-          </div>
+          ))}
         </div>
-        <div><button>Add New Category</button></div>
+        <div>
+          <button onClick={createCategory}>Add New Category</button>
+        </div>
       </div>
     </div>
   );
