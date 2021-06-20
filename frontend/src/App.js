@@ -74,7 +74,11 @@ function App() {
           <AdminRoute path="/admin" component={AdminHomeScreen}></AdminRoute>
           <Route path="/" component={HomeScreen} exact={true}></Route>
         </main>
+<<<<<<< HEAD
         <Footer></Footer>
+=======
+        {!isAdminPage && <Footer />}
+>>>>>>> 1ccb449d33e3f28eebe63400e274bd8981282993
       </div>
     </BrowserRouter>
   );
