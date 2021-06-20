@@ -84,4 +84,38 @@ categoryRouter.get(
   })
 );
 
+categoryRouter.put(
+  "/updateCategory",
+  expressAsyncHandler(async (req, res) => {
+    const { _id, categoryName, subcategories } = req.body;
+    console.log(req.body);
+    try {
+      // console.log('Fetching Category Data');
+      const response = await Category.updateOne(
+        { _id: _id },
+        { _id, categoryName, subcategories },
+        { upsert: true }
+      );
+      res.status(201).send({ response });
+    } catch (error) {
+      res.status(404).send({ message: error.message });
+    }
+  })
+);
+
+categoryRouter.delete(
+  "/deleteCategory",
+  expressAsyncHandler(async (req, res) => {
+    const { _id } = req.body;
+    console.log(req.body);
+    console.log("Deleting Category " + _id);
+    try {
+      const response = await Category.deleteOne({ _id });
+      res.status(200).send({ response });
+    } catch (error) {
+      res.status(404).send(error);
+    }
+  })
+);
+
 export default categoryRouter;

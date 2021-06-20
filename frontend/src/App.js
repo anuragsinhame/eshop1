@@ -74,7 +74,7 @@ function App() {
           <AdminRoute path="/admin" component={AdminHomeScreen}></AdminRoute>
           <Route path="/" component={HomeScreen} exact={true}></Route>
         </main>
-        <Footer></Footer>
+        {!isAdminPage && <Footer />}
       </div>
     </BrowserRouter>
   );

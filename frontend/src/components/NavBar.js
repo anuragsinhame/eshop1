@@ -3,22 +3,28 @@ import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import publicCss from "../public.module.css";
+import { useSelector } from "react-redux";
 const API_URL = process.env.REACT_APP_API_URL;
 
 export default function NavBar() {
   const [CategoryData, setCategoryData] = useState([]);
   const [isError, setError] = useState(false);
+
+  const { isAdminPage } = useSelector((state) => state.adminPageStatus);
+
   useEffect(() => {
-    axios
-      .get(`${API_URL}/api/category`)
-      .then(({ data }) => {
-        setCategoryData(data.CategoryData);
-      })
-      .catch((err) => {
-        setError(true);
-        console.log(`Error in getting category from Server ${err}`);
-      });
-  }, []);
+    if (!isAdminPage) {
+      axios
+        .get(`${API_URL}/api/category`)
+        .then(({ data }) => {
+          setCategoryData(data.CategoryData);
+        })
+        .catch((err) => {
+          setError(true);
+          console.log(`Error in getting category from Server ${err}`);
+        });
+    }
+  }, [isAdminPage]);
 
   return (
     <nav className={`${publicCss.nav} row`}>
