@@ -50,7 +50,7 @@ categoryRouter.get(
   expressAsyncHandler(async (req, res) => {
     try {
       const catId = +req.params.catId;
-      console.log(req.params.catId);
+      // console.log(req.params.catId);
       const response = await Category.findById(catId);
       if (response) {
         res.status(201).send({
@@ -107,7 +107,7 @@ categoryRouter.delete(
   expressAsyncHandler(async (req, res) => {
     const { _id } = req.body;
     // console.log(req.body);
-    console.log("Deleting Category " + _id);
+    // console.log("Deleting Category " + _id);
     try {
       const response = await Category.deleteOne({ _id });
       res.status(200).send({ response });
@@ -121,7 +121,7 @@ categoryRouter.put(
   "/updateSubCategory",
   expressAsyncHandler(async (req, res) => {
     const { catId, subCatId } = req.body;
-    console.log("SubCat Update", req.body);
+    // console.log("SubCat Update", req.body);
     try {
       const response = await Category.updateOne(
         { _id: catId, "subCategories._id": subCatId },
@@ -139,8 +139,8 @@ categoryRouter.delete(
   "/deleteSubCategory",
   expressAsyncHandler(async (req, res) => {
     const { catId, subCatId } = req.body;
-    console.log("sub", req.body);
-    console.log("Deleting Category ", catId, subCatId);
+    // console.log("sub", req.body);
+    // console.log("Deleting Category ", catId, subCatId);
     try {
       // const response = await Category.deleteOne(
       //   { _id: catId, "subCategories._id": subCatId },

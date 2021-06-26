@@ -83,7 +83,7 @@ storeRouter.delete(
   "/pinCode",
   expressAsyncHandler(async (req, res) => {
     const pinCode = req.body.pinCode;
-    console.log("Deleting" + pinCode);
+    // console.log("Deleting" + pinCode);
     try {
       const response = await Store.deleteOne({
         property: "PinCode",
@@ -113,7 +113,7 @@ storeRouter.post(
   "/sliderImage",
   expressAsyncHandler(async (req, res) => {
     const { url, description, alt } = req.body;
-    console.log(url, description, alt);
+    // console.log(url, description, alt);
     const sliderImageNew = new SliderImage({
       url,
       description,
@@ -123,7 +123,7 @@ storeRouter.post(
       const response = await sliderImageNew.save();
       res.status(200).send({ response });
     } catch (error) {
-      console.log("Errrrr", error);
+      // console.log("Errrrr", error);
       res.status(404).send(error);
     }
   })
@@ -133,7 +133,7 @@ storeRouter.delete(
   "/sliderImage",
   expressAsyncHandler(async (req, res) => {
     const id = req.body.id;
-    console.log("Deleting" + id);
+    // console.log("Deleting" + id);
     try {
       const response = await SliderImage.deleteOne({
         _id: id,
