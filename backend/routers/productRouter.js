@@ -66,7 +66,7 @@ productRouter.get(
   expressAsyncHandler(async (req, res) => {
     try {
       const catId = +req.params.catId;
-      console.log(req.params.catId);
+      // console.log(req.params.catId);
       const products = await Product.find({
         category: catId,
       });
@@ -79,6 +79,47 @@ productRouter.get(
       }
     } catch (error) {
       res.status(404).send({ message: error.message });
+    }
+  })
+);
+
+productRouter.post(
+  "/addProduct",
+  expressAsyncHandler(async (req, res) => {
+    // await Product.remove({});
+    const {
+      name,
+      image,
+      brand,
+      category,
+      subCategory,
+      description,
+      price,
+      countInStock,
+      discount,
+      rating,
+      numReviews,
+    } = req.body;
+    // console.log(req.body);
+    // console.log("name", name);
+    const newProduct = new Product({
+      name,
+      image,
+      brand,
+      category,
+      subCategory,
+      description,
+      price,
+      countInStock,
+      discount,
+      rating,
+      numReviews,
+    });
+    try {
+      const response = await newProduct.save();
+      res.status(200).send({ response });
+    } catch (error) {
+      res.status(400).send({ ...error });
     }
   })
 );
@@ -114,45 +155,16 @@ productRouter.put(
   })
 );
 
-productRouter.post(
-  "/addProduct",
+productRouter.delete(
+  "/deleteProduct",
   expressAsyncHandler(async (req, res) => {
-    // await Product.remove({});
-    const {
-      name,
-      image,
-      brand,
-      category,
-      subCategory,
-      description,
-      price,
-      countInStock,
-      discount,
-      rating,
-      numReviews,
-    } = req.body;
-    console.log(req.body);
-    console.log("name", name);
-    const newProduct = new Product({
-      name,
-      image,
-      brand,
-      category,
-      subCategory,
-      description,
-      price,
-      countInStock,
-      discount,
-      rating,
-      numReviews,
-    });
+    const { prodId } = req.body;
     try {
-      const response = await newProduct.save();
+      const response = await Product.deleteOne({ _id: prodId });
       res.status(200).send({ response });
     } catch (error) {
-      res.status(400).send({ ...error });
+      res.status(404).send(error);
     }
   })
 );
-
 export default productRouter;
