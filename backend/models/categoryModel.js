@@ -3,7 +3,7 @@ const categorySchema = mongoose.Schema(
   {
     _id: { type: Number, required: true },
     categoryName: { type: String, required: true },
-    subcategories: [
+    subCategories: [
       {
         _id: Number,
         name: String,

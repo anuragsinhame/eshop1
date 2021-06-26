@@ -14,7 +14,7 @@ import {
   productDetailsReducer,
   productReducers,
 } from "./reducers/productReducers";
-import { setAdminReducer } from "./reducers/storeReducers";
+import { setAdminReducer, StoreDataReducer } from "./reducers/storeReducers";
 import {
   userDetailsReducer,
   userRegisterReducer,
@@ -56,6 +56,7 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   categoryProductData: categoryProductsDataReducer,
   adminPageStatus: setAdminReducer,
+  storeData: StoreDataReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -44,18 +44,17 @@ categoryRouter.get(
     }
   })
 );
+
 categoryRouter.get(
   "/:catId",
   expressAsyncHandler(async (req, res) => {
     try {
       const catId = +req.params.catId;
       console.log(req.params.catId);
-      const products = await Product.find({
-        category: catId,
-      });
-      if (products.length > 0) {
+      const response = await Category.findById(catId);
+      if (response) {
         res.status(201).send({
-          products: products,
+          category: response,
         });
       } else {
         res.status(404).send({ message: "Not Found" });
@@ -87,13 +86,13 @@ categoryRouter.get(
 categoryRouter.put(
   "/updateCategory",
   expressAsyncHandler(async (req, res) => {
-    const { _id, categoryName, subcategories } = req.body;
-    console.log(req.body);
+    const { _id, categoryName, subCategories } = req.body;
+    // console.log(req.body);
     try {
       // console.log('Fetching Category Data');
       const response = await Category.updateOne(
         { _id: _id },
-        { _id, categoryName, subcategories },
+        { _id, categoryName, subCategories },
         { upsert: true }
       );
       res.status(201).send({ response });
@@ -107,10 +106,50 @@ categoryRouter.delete(
   "/deleteCategory",
   expressAsyncHandler(async (req, res) => {
     const { _id } = req.body;
-    console.log(req.body);
+    // console.log(req.body);
     console.log("Deleting Category " + _id);
     try {
       const response = await Category.deleteOne({ _id });
+      res.status(200).send({ response });
+    } catch (error) {
+      res.status(404).send(error);
+    }
+  })
+);
+
+categoryRouter.put(
+  "/updateSubCategory",
+  expressAsyncHandler(async (req, res) => {
+    const { catId, subCatId } = req.body;
+    console.log("SubCat Update", req.body);
+    try {
+      const response = await Category.updateOne(
+        { _id: catId, "subCategories._id": subCatId },
+        { $pull: { subCategories: { _id: subCatId } } },
+        { upsert: true }
+      );
+      res.status(201).send({ response });
+    } catch (error) {
+      res.status(404).send({ message: error.message });
+    }
+  })
+);
+
+categoryRouter.delete(
+  "/deleteSubCategory",
+  expressAsyncHandler(async (req, res) => {
+    const { catId, subCatId } = req.body;
+    console.log("sub", req.body);
+    console.log("Deleting Category ", catId, subCatId);
+    try {
+      // const response = await Category.deleteOne(
+      //   { _id: catId, "subCategories._id": subCatId },
+      //   { $pull: { subCategories: { _id: subCatId } } }
+      // );
+      const response = await Category.deleteOne(
+        { _id: catId, "subCategories._id": subCatId },
+        { $pull: { subCategories: { _id: subCatId } } }
+      );
       res.status(200).send({ response });
     } catch (error) {
       res.status(404).send(error);

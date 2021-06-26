@@ -10,7 +10,7 @@ import adminCss from "../admin.module.css";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 // import ProductCard from "../components/ProductCard";
-// import LoadingBox from "../components/LoadingBox";
+import LoadingBox from "../../components/LoadingBox";
 // import MessageBox from "../components/MessageBox";
 // import { listProducts } from "../actions/productActions";
 // import data from "../data";  //local import commented
@@ -23,38 +23,26 @@ export default function Categories() {
   const emptyCategory = {
     _id: null,
     categoryName: "",
-    subcategories: [],
+    subCategories: [],
   };
   const [loading, setLoading] = useState(false);
-  const [editing, setEditing] = useState(false);
+  // const [editing, setEditing] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [categoryFieldState, setCategoryFieldState] = useState([]);
+  // const [categoryFieldState, setCategoryFieldState] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
       let dbCategoriesRes = await axios.get(`${API_URL}/api/category`);
       setCategories(dbCategoriesRes.data.CategoryData);
-      setCategoryFieldState(() => {
-        let newCatField = categories.map((category) => {
-          return { _id: category._id, mode: "" };
-        });
-        console.log("new", newCatField);
-        return [...newCatField];
-      });
-      // let dbStoreNameRes = await axios.get(`${API_URL}/api/store/storeName`);
-      // setStoreName(dbStoreNameRes.data.StoreName);
-      // let dbPinCodes = await axios.get(`${API_URL}/api/store/pinCodes`);
-      // // let newPinCodes = dbPinCodes.data.PinCodes.map(
-      // //   (pinCodeRes) => pinCodeRes.value
-      // // );
-      // setPinCodes(dbPinCodes.data.PinCodes);
-      // console.log("DB PIN", dbPinCodes.data.PinCodes);
-      // // getting slider images
-      // let dbSliderImages = await axios.get(`${API_URL}/api/store/sliderImages`);
-      // setSliderImages(dbSliderImages.data.SliderImages);
-      // console.log("DB Slider Images", dbSliderImages.data.SliderImages);
-      // setLoading(false);
+      // setCategoryFieldState(() => {
+      //   let newCatField = categories.map((category) => {
+      //     return { _id: category._id, mode: "" };
+      //   });
+      //   console.log("new", newCatField);
+      //   return [...newCatField];
+      // });
+      setLoading(false);
     }
     fetchData();
     // console.log("Categories", categories);
@@ -63,12 +51,9 @@ export default function Categories() {
 
   const createCategory = () => {
     console.log("Adding new category", categories);
-    // let newCategories = categories;
-    // newCategories.push(emptyCategory);
     setCategories((categories) => [...categories, emptyCategory]);
-    // console.log("Added", categories);
     console.log("Categories", categories);
-    console.log("CategoriesField", categoryFieldState);
+    // console.log("CategoriesField", categoryFieldState);
   };
 
   // const editCategory = (categoryId) => {
@@ -103,92 +88,96 @@ export default function Categories() {
 
   return (
     <div className={adminCss.mainComponent}>
-      <div>
-        <h3>Manage Categories</h3>
-        <div className={adminCss.categories}>
-          <div className={adminCss.categoryHeader}>
-            <div>Category Id</div>
-            <div>Category Name</div>
-            <div>Edit</div>
-            <div>Delete</div>
-          </div>
+      {loading ? (
+        <LoadingBox />
+      ) : (
+        <div>
+          <h3>Manage Categories</h3>
+          <div className={adminCss.categories}>
+            <div className={adminCss.categoryHeader}>
+              <div>Category Id</div>
+              <div>Category Name</div>
+              <div>Edit</div>
+              <div>Delete</div>
+            </div>
 
-          {categories.map((category) => (
-            <div className={adminCss.categoryData} key={category._id}>
-              <div className="catIdText">
-                <input
-                  className="w100"
-                  type="text"
-                  placeholder="Cat Id"
-                  value={category._id}
-                  disabled={category._id !== null}
-                  onChange={(e) => {
-                    setCategories((categories) => {
-                      return [
-                        ...categories.map((oldCategory) => {
-                          if (oldCategory._id === null) {
-                            oldCategory._id = e.target.value;
-                          }
-                          return oldCategory;
-                        }),
-                      ];
-                    });
-                  }}
-                />
-              </div>
-              <div className="catName">
-                <input
-                  className="w100"
-                  type="text"
-                  placeholder="Cat Name"
-                  value={category.categoryName}
-                  onChange={(e) => {
-                    setCategories((categories) => {
-                      return [
-                        ...categories.map((oldCategory) => {
-                          if (category._id === oldCategory._id) {
-                            oldCategory.categoryName = e.target.value;
-                          }
-                          return oldCategory;
-                        }),
-                      ];
-                    });
-                  }}
-                  // disabled
-                />
-              </div>
-              <div className="catEdit">
-                {/* <button
+            {categories.map((category) => (
+              <div className={adminCss.categoryData} key={category._id}>
+                <div className="catIdText">
+                  <input
+                    className="w100"
+                    type="text"
+                    placeholder="Cat Id"
+                    value={category._id}
+                    disabled={category._id !== null}
+                    onChange={(e) => {
+                      setCategories((categories) => {
+                        return [
+                          ...categories.map((oldCategory) => {
+                            if (oldCategory._id === null) {
+                              oldCategory._id = e.target.value;
+                            }
+                            return oldCategory;
+                          }),
+                        ];
+                      });
+                    }}
+                  />
+                </div>
+                <div className="catName">
+                  <input
+                    className="w100"
+                    type="text"
+                    placeholder="Cat Name"
+                    value={category.categoryName}
+                    onChange={(e) => {
+                      setCategories((categories) => {
+                        return [
+                          ...categories.map((oldCategory) => {
+                            if (category._id === oldCategory._id) {
+                              oldCategory.categoryName = e.target.value;
+                            }
+                            return oldCategory;
+                          }),
+                        ];
+                      });
+                    }}
+                    // disabled
+                  />
+                </div>
+                <div className="catEdit">
+                  {/* <button
                   className="w100"
                   type="button"
                   onClick={(e) => editCategory(category._id)}
                 >
                   Edit
                 </button> */}
-                <button
-                  className="w100"
-                  type="button"
-                  onClick={(e) => updateCategory(category._id)}
-                >
-                  Update
-                </button>
+                  <button
+                    className="w100"
+                    type="button"
+                    onClick={(e) => updateCategory(category._id)}
+                  >
+                    Update
+                  </button>
+                </div>
+                <div className="catDelete">
+                  <button
+                    className="w100"
+                    type="button"
+                    onClick={(e) => deleteCategory(category._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-              <div className="catDelete">
-                <button
-                  className="w100"
-                  type="button"
-                  onClick={(e) => deleteCategory(category._id)}
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div>
+            <button onClick={createCategory}>Add New Category</button>
+          </div>
         </div>
-        <div>
-          <button onClick={createCategory}>Add New Category</button>
-        </div>
-      </div>
+      )}
     </div>
   );
 }
