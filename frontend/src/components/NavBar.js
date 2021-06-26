@@ -31,13 +31,13 @@ export default function NavBar() {
       {isError && <Redirect to="/signin"></Redirect>}
       <div>
         {CategoryData.map((category) => (
-          <div className={publicCss.dropdown}>
+          <div className={publicCss.dropdown} key={category._id}>
             <Link to={`/products/${category._id}`}>
               {category.categoryName} <i className="fa fa-caret-down"></i>
             </Link>
             <ul className={publicCss.dropdownContent}>
-              {category.subcategories.map((subCat) => (
-                <li key={subCat.id}>
+              {category.subCategories.map((subCat) => (
+                <li key={subCat._id}>
                   <Link to={`/products/${category._id}/${subCat._id}`}>
                     {subCat.name}
                   </Link>

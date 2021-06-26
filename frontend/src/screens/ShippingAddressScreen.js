@@ -5,7 +5,7 @@ import publicCss from "../public.module.css";
 
 import { saveShippingAddress } from "../actions/cartActions";
 import CheckoutSteps from "../components/CheckoutSteps";
-import { StoreConstants } from "../storeData.js";
+// import { StoreConstants } from "../storeData.js";
 import MessageBox from "../components/MessageBox";
 
 export default function ShippingAddressScreen(props) {
@@ -18,6 +18,8 @@ export default function ShippingAddressScreen(props) {
     props.history.push("/signin");
   }
 
+  const StoreConstants = useSelector((state) => state.storeData);
+
   const [fullName, setFullName] = useState(shippingAddress.fullName);
   const [address, setAddress] = useState(shippingAddress.address);
   const [city, setCity] = useState(shippingAddress.city);
@@ -29,7 +31,8 @@ export default function ShippingAddressScreen(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     // TODO: dispatch save ShippingAddress
-    const isPinAvailable = StoreConstants.pinCodesForDelivery.find(
+    console.log("SCS", StoreConstants.PinCodes);
+    const isPinAvailable = StoreConstants.PinCodes.find(
       (pincode) => pincode === postalCode
     );
     if (isPinAvailable) {

@@ -26,7 +26,7 @@ productRouter.post(
 // kept below "seed", otherwise "seed" will be treated as id
 productRouter.get(
   "/:id",
-  expressAsyncHandler(async (req, res, next) => {
+  expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {
       res.status(200).send(product);
@@ -34,6 +34,123 @@ productRouter.get(
       res.status(404).send({
         message: "Product Not Found",
       });
+    }
+  })
+);
+
+productRouter.get(
+  "/category/:catId/subCategory/:subCatId",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const catId = +req.params.catId;
+      const subCatId = +req.params.subCatId;
+      const products = await Product.find({
+        category: catId,
+        subCategory: subCatId,
+      });
+      if (products.length > 0) {
+        res.status(201).send({
+          products: products,
+        });
+      } else {
+        res.status(404).send({ message: "Not Found" });
+      }
+    } catch (error) {
+      res.status(404).send({ message: error.message });
+    }
+  })
+);
+
+productRouter.get(
+  "/category/:catId",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const catId = +req.params.catId;
+      console.log(req.params.catId);
+      const products = await Product.find({
+        category: catId,
+      });
+      if (products.length > 0) {
+        res.status(201).send({
+          products: products,
+        });
+      } else {
+        res.status(404).send({ message: "Not Found" });
+      }
+    } catch (error) {
+      res.status(404).send({ message: error.message });
+    }
+  })
+);
+
+productRouter.put(
+  "/updateProduct",
+  expressAsyncHandler(async (req, res) => {
+    // await Product.remove({});
+    const {
+      _id,
+      name,
+      image,
+      brand,
+      description,
+      price,
+      countInStock,
+      discount,
+    } = req.body;
+    try {
+      const response = await Product.findByIdAndUpdate(_id, {
+        name,
+        image,
+        brand,
+        description,
+        price,
+        countInStock,
+        discount,
+      });
+      res.status(200).send({ response });
+    } catch (error) {
+      res.status(400).send({ error });
+    }
+  })
+);
+
+productRouter.post(
+  "/addProduct",
+  expressAsyncHandler(async (req, res) => {
+    // await Product.remove({});
+    const {
+      name,
+      image,
+      brand,
+      category,
+      subCategory,
+      description,
+      price,
+      countInStock,
+      discount,
+      rating,
+      numReviews,
+    } = req.body;
+    console.log(req.body);
+    console.log("name", name);
+    const newProduct = new Product({
+      name,
+      image,
+      brand,
+      category,
+      subCategory,
+      description,
+      price,
+      countInStock,
+      discount,
+      rating,
+      numReviews,
+    });
+    try {
+      const response = await newProduct.save();
+      res.status(200).send({ response });
+    } catch (error) {
+      res.status(400).send({ ...error });
     }
   })
 );
