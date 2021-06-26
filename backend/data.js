@@ -214,7 +214,7 @@ const data = {
     {
       _id: 1,
       categoryName: "Grocery",
-      subcategories: [
+      subCategories: [
         { _id: 101, name: "Pulses" },
         { _id: 102, name: "ATTA" },
         { _id: 103, name: "Other Flours" },
@@ -231,7 +231,7 @@ const data = {
     {
       _id: 2,
       categoryName: "Personal Care",
-      subcategories: [
+      subCategories: [
         { _id: 201, name: "Bath & Body" },
         { _id: 202, name: "Hair Care" },
         { _id: 203, name: "Skin Care" },
@@ -247,7 +247,7 @@ const data = {
     {
       _id: 3,
       categoryName: "Household",
-      subcategories: [
+      subCategories: [
         { _id: 301, name: "Repellents" },
         { _id: 302, name: "Laundry Detergents" },
         { _id: 303, name: "Cleaners" },
@@ -264,7 +264,7 @@ const data = {
     {
       _id: 4,
       categoryName: "Snacks",
-      subcategories: [
+      subCategories: [
         { _id: 401, name: "Chocolates" },
         { _id: 402, name: "Biscuits & Cookies" },
         { _id: 403, name: "Namkeen & Snacks" },
@@ -276,7 +276,7 @@ const data = {
     {
       _id: 5,
       categoryName: "Beverages",
-      subcategories: [
+      subCategories: [
         { _id: 501, name: "Cold Drinks" },
         { _id: 502, name: "Juices & Drinks" },
         { _id: 503, name: "Tea" },

@@ -27,7 +27,7 @@ export const CategoryData = [
   {
     _id: 1,
     categoryName: "Grocery",
-    subcategories: [
+    subCategories: [
       { id: 101, name: "Pulses" },
       { id: 102, name: "ATTA" },
       { id: 103, name: "Other Flours" },
@@ -44,7 +44,7 @@ export const CategoryData = [
   {
     _id: 2,
     categoryName: "Personal Care",
-    subcategories: [
+    subCategories: [
       { id: 201, name: "Bath & Body" },
       { id: 202, name: "Hair Care" },
       { id: 203, name: "Skin Care" },
@@ -60,7 +60,7 @@ export const CategoryData = [
   {
     _id: 3,
     categoryName: "Household",
-    subcategories: [
+    subCategories: [
       { id: 301, name: "Repellents" },
       { id: 302, name: "Laundry Detergents" },
       { id: 303, name: "Cleaners" },
@@ -77,7 +77,7 @@ export const CategoryData = [
   {
     _id: 4,
     categoryName: "Snacks",
-    subcategories: [
+    subCategories: [
       { id: 401, name: "Chocolates" },
       { id: 402, name: "Biscuits & Cookies" },
       { id: 403, name: "Namkeen & Snacks" },
@@ -89,7 +89,7 @@ export const CategoryData = [
   {
     _id: 5,
     categoryName: "Beverages",
-    subcategories: [
+    subCategories: [
       { id: 501, name: "Cold Drinks" },
       { id: 502, name: "Juices & Drinks" },
       { id: 503, name: "Tea" },

@@ -13,10 +13,12 @@ export const getCategoryProducts = (catId, subCatId) => async (dispatch) => {
     let productsRes = {};
     if (subCatId) {
       console.log("Getting cat/subcat data from db");
-      productsRes = await axios(`${API_URL}/api/category/${catId}/${subCatId}`);
+      productsRes = await axios(
+        `${API_URL}/api/products/category/${catId}/subCategory/${subCatId}`
+      );
     } else {
       console.log("Getting cat data from db");
-      productsRes = await axios(`${API_URL}/api/category/${catId}`);
+      productsRes = await axios(`${API_URL}/api/products/category/${catId}`);
     }
     const { data } = productsRes;
     const categoryProducts = data.products;

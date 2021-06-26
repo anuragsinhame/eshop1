@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { signout } from "../actions/userActions";
 
 import publicCss from "../public.module.css";
-import { StoreConstants } from "../storeData";
+import { StoreData } from "../actions/storeActions";
+
+// import { StoreConstants } from "../storeData";
 
 export default function Header() {
+  const StoreConstants = useSelector((state) => state.storeData);
+  const { StoreName } = StoreConstants;
   const cart = useSelector((state) => state.cart);
   const cartItems = cart.cartItems;
 
@@ -18,11 +22,27 @@ export default function Header() {
     dispatch(signout());
   };
 
+  useEffect(() => {
+    dispatch(StoreData());
+    // const fetchData = async () => {
+    //   // http://localhost:4200/api/store/all
+    //   const dbStoreData = await axios.get(`${API_URL}/api/store/all`);
+    //   console.log("stData", dbStoreData.data);
+    //   console.log("stDataRes", dbStoreData.data.response);
+    //   setStoreConstants(dbStoreData.data.response);
+    //   const dbStoreName = dbStoreData.data.response.filter(
+    //     (storeProperty) => storeProperty.property === "StoreName"
+    //   )[0].value;
+    //   setStoreName(dbStoreName);
+    // };
+    // fetchData();
+  }, [dispatch]);
+
   return (
     <header className={`${publicCss.header} row`}>
       <div>
         <Link className={publicCss.brand} to="/">
-          {StoreConstants.shopName}
+          {StoreName}
         </Link>
       </div>
       <div></div>
