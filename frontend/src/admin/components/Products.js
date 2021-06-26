@@ -61,20 +61,21 @@ export default function Products() {
       );
       // console.log("dbsffgw", dbSubCategories);
       setSubCategories(dbSubCategories.subCategories);
-      if (selectedSubCategory) {
-        console.log("CategorySe", selectedSubCategory);
-        try {
-          setError("");
-          let dbProductsRes = await axios(
-            `${API_URL}/api/products/category/${selectedCategory}/subCategory/${selectedSubCategory}`
-          );
-          const { data } = dbProductsRes;
-          setProducts(data.products);
-        } catch (error) {
-          console.log("Error");
-          setError("No Products to display");
-          // setProducts([]);
-        }
+      if (!selectedSubCategory) {
+        setSelectedSubCategory(dbSubCategories.subCategories[0]._id);
+      }
+      console.log("CategorySe", selectedSubCategory);
+      try {
+        setError("");
+        let dbProductsRes = await axios(
+          `${API_URL}/api/products/category/${selectedCategory}/subCategory/${selectedSubCategory}`
+        );
+        const { data } = dbProductsRes;
+        setProducts(data.products);
+      } catch (error) {
+        console.log("Error");
+        setError("No Products to display");
+        // setProducts([]);
       }
       setLoading(false);
     }
@@ -108,6 +109,8 @@ export default function Products() {
       console.log("Error in uploading image", error);
     }
     setLoading(false);
+    alert("Product Added");
+    setIsProdEditModal(false);
   };
 
   const addProduct = async () => {
@@ -134,6 +137,17 @@ export default function Products() {
       console.log("Error in uploading image", error);
     }
     setLoading(false);
+    alert("Product Added");
+    setIsProdAddModal(false);
+  };
+
+  const deleteProduct = async (prodId) => {
+    setLoading(true);
+    await axios.delete(`${API_URL}/api/products/deleteProduct`, {
+      data: { prodId },
+    });
+    setLoading(false);
+    alert("Product Deleted");
   };
 
   return (
@@ -240,7 +254,11 @@ export default function Products() {
                   </button>
                 </div>
                 <div className="catDelete">
-                  <button className="w100" type="button">
+                  <button
+                    className="w100"
+                    type="button"
+                    onClick={(e) => deleteProduct(product._id)}
+                  >
                     Delete
                   </button>
                 </div>
